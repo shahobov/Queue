@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Queue.Application\**" />
+    <EmbeddedResource Remove="Queue.Application\**" />
+    <None Remove="Queue.Application\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Queue.Domain\Queue.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
