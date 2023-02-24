@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Common.Interfaces
 {
-    public interface IClientSevice: IBaseService<Client>
+    public interface IClientService: IBaseService<Client>
     {
 
     }

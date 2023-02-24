@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Services
 {
-    public class ClientService : BaseService<Client>, IClientSevice
+    public class ClientService : BaseService<Client>, IClientService
     {
         public override Client Get(ulong id)
         {
@@ -16,7 +16,8 @@ namespace Queue.Application.Services
             {
                 return new Client() 
                 { 
-                    Name ="Samadjon"
+                    Name ="Samadjon",
+                    Address = "Istaravshan"
                 };
             }
             return new Client() 

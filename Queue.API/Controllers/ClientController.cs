@@ -7,9 +7,9 @@ namespace Queue.API.Controllers
     [Route("[controller]")]
     public class ClientController : ControllerBase
     {
-        private IClientSevice _clientService;
+        private IClientService _clientService;
 
-        public ClientController(IClientSevice clientService)
+        public ClientController(IClientService clientService)
         {
             _clientService = clientService;
         }
