@@ -16,13 +16,13 @@ namespace Queue.Application.Services
             {
                 return new Client() 
                 { 
-                    Name ="Samadjon",
+                    FirstName ="Samadjon",
                     Address = "Istaravshan"
                 };
             }
             return new Client() 
             { 
-                Name ="Client not found"
+                FirstName ="Client not found"
             };
         }
     }

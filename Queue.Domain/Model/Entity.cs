@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Queue.Domain.Model
 {
-    public class Client : Person
+    public class Queue : EntityBase
     {
-        
+        public string NameEntity { get; set; }
+
     }
 }

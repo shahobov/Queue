@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Queue.Domain.Model
 {
-    public class Client : Person
+    public class Worker : Person
     {
-        
+        public string Job { get; set; }
     }
 }

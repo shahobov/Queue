@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Queue.Domain.Model
+namespace Queue.Application.Services
 {
-    public class Client : Person
+    internal class EntityService
     {
-        
     }
 }
