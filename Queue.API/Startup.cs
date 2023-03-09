@@ -2,12 +2,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NuGet.Protocol.Core.Types;
 using Queue.Application.Common.Interfaces;
+using Queue.Application.Common.Interfaces.Repositories;
+using Queue.Application.DBContext;
 using Queue.Application.Services;
 using System;
 using System.Collections.Generic;
@@ -36,6 +40,9 @@ namespace Queue.API
             });
 
             services.AddScoped<IClientService, ClientService>();
+            services.AddDbContext<AplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefoultConnection")));
+            services.AddScoped<IClientServiceRepositry, ClientService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

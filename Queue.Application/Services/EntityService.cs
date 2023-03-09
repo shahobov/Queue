@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Services
 {
-    internal class EntityService
+    public class EntityService
     {
     }
 }
