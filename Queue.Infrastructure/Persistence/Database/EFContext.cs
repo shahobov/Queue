@@ -11,7 +11,7 @@ namespace Queue.Infrastructure.Persistence.Database
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Ignore<EntityBase>();
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(TableConfigurations.ProductTablesConfigurations).Assembly);
+           
         }
     }
 }
