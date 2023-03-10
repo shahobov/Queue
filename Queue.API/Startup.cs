@@ -1,22 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using NuGet.Protocol.Core.Types;
-using Queue.Application.Common.Interfaces;
-using Queue.Application.Common.Interfaces.Repositories;
-using Queue.Application.DBContext;
-using Queue.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Queue.API
 {
@@ -39,9 +27,9 @@ namespace Queue.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Queue.API", Version = "v1" });
             });
 
-            services.AddScoped<IClientService, ClientService>();
-            services.AddDbContext<AplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefoultConnection")));
-            services.AddScoped<IClientServiceRepositry, ClientService>();
+            //services.AddScoped<IClientService, ClientService>();
+            //services.AddDbContext<AplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefoultConnection")));
+            //services.AddScoped<IClientServiceRepositry, ClientService>();
             
         }
 

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Queue.Application.Tests\Queue.Application.Tests.csproj" />
     <ProjectReference Include="..\Queue.Domain\Queue.Domain.csproj" />
   </ItemGroup>
 

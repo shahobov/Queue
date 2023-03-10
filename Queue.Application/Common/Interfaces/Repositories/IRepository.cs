@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Common.Interfaces.Repositories
 {
-    public interface  IBaseRepository<TEntity> where TEntity : EntityBase
+    public interface  IRepository<TEntity> where TEntity : EntityBase
     {
-        Task Add(TEntity entity);
+        void Add(TEntity entity);
         void Delete(TEntity entity, ulong id);
-        void Update(TEntity entity, ulong id);
+        TEntity Update(TEntity entity, ulong id);
         TEntity GetById(ulong id);
     }
 }

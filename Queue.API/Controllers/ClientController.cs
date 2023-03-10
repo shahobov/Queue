@@ -10,7 +10,7 @@ namespace Queue.API.Controllers
     public class ClientController : ControllerBase
     {
         private IClientService _clientService;
-        private IClientServiceRepositry _repository;
+        private readonly IClientServiceRepositry _repository;
 
         public ClientController(IClientService clientService)
         {

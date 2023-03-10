@@ -17,13 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Queue.API.Tests\Queue.API.Tests.csproj" />
-    <ProjectReference Include="..\Queue.API\Queue.API.csproj" />
-    <ProjectReference Include="..\Queue.Application.Tests\Queue.Application.Tests.csproj" />
     <ProjectReference Include="..\Queue.Application\Queue.Application.csproj" />
-    <ProjectReference Include="..\Queue.Domain.Tests\Queue.Domain.Tests.csproj" />
     <ProjectReference Include="..\Queue.Domain\Queue.Domain.csproj" />
-    <ProjectReference Include="..\Queue.Infrastructure.Tests\Queue.Infrastructure.Tests.csproj" />
   </ItemGroup>
 
 </Project>
