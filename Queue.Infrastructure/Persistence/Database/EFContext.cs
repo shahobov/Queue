@@ -6,8 +6,7 @@ namespace Queue.Infrastructure.Persistence.Database
     public class EFContext : DbContext
     {
         public EFContext(DbContextOptions<EFContext> options) : base(options) {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,9 +16,5 @@ namespace Queue.Infrastructure.Persistence.Database
            
         }
        
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "Queue");
-        }
     }
 }

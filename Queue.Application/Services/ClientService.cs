@@ -11,11 +11,11 @@ namespace Queue.Application.Services
 {
     public class ClientService : BaseService<Client>, IClientService
     {
-        private readonly IRepository<Client> repository;
+        private readonly IRepository<Client> _repository;
 
         public ClientService(IRepository<Client> repository)
         {
-            this.repository = repository;
+           _repository = repository;
         }
         
         public override Client Get(ulong id)
@@ -39,8 +39,8 @@ namespace Queue.Application.Services
             {
                 throw new ArgumentNullException(nameof(Client));
             };
-            repository.Add(entity);
-            repository.SaveChanges();
+            _repository.Add(entity);
+            _repository.SaveChanges();
             return entity;
         }
     }

@@ -9,7 +9,7 @@ namespace Queue.API.Controllers
     [Route("[controller]")]
     public class ClientController : ControllerBase
     {
-        private IClientService _clientService;
+        private readonly IClientService _clientService;
 
         public ClientController(IClientService clientService)
         {
@@ -22,7 +22,7 @@ namespace Queue.API.Controllers
             return Ok(_clientService.Get(id));
         }
         [HttpPost]
-        public IActionResult Post(Client client) 
+        public IActionResult Post(Client client)
         {
 
             return Ok(_clientService.Create(client));

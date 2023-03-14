@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
 using Queue.Application.Services;
+using Queue.Infrastructure.Persistence.Database;
 using Queue.Infrastructure.Persistence.Repositories;
 
 namespace Queue.API
@@ -31,10 +32,14 @@ namespace Queue.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Queue.API", Version = "v1" });
             });
 
-            //services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IClientService, ClientService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<IClientService, ClientService>();
-
+            //services.AddTransient<IClientService, ClientService>();
+            services.AddDbContext<EFContext>(options =>
+            {
+                options.UseInMemoryDatabase("database: Queue");
+                
+            }, ServiceLifetime.Scoped);
 
 
         }

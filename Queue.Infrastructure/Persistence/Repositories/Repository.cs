@@ -12,12 +12,14 @@ namespace Queue.Infrastructure.Persistence.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
     {
-        private readonly EFContext _conrext;
         private readonly DbSet<TEntity> _dBset;
+        private readonly EFContext _conrext;
+        
         public Repository( EFContext eFContext)
         {
-            _dBset = _conrext.Set<TEntity>();
             _conrext = eFContext;
+            _dBset = _conrext.Set<TEntity>();
+           
         }
         public void Add(TEntity entity)
         {
