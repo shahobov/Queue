@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Queue.Domain.Model
 {
-    public class Queues : EntityBase
+    public class QueueForService : EntityBase
     {
-        public Queue Entity { get; set; }
+        public Service Service { get; set; }
         public Client Client { get; set; }
-        public DateTime QueueDateTime { get; set; }
-        public int NumberOfQueue { get; set; }
+        public Worker Worker { get; set; }
+        public DateTime DateTimeOfQueue { get; set; }
+
     }
 }

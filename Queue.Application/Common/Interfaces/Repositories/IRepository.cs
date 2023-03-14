@@ -13,5 +13,7 @@ namespace Queue.Application.Common.Interfaces.Repositories
         void Delete(TEntity entity, ulong id);
         TEntity Update(TEntity entity, ulong id);
         TEntity GetById(ulong id);
+        int SaveChanges ();
+       
     }
 }

@@ -5,6 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Queue.Application.Common.Interfaces;
+using Queue.Application.Common.Interfaces.Repositories;
+using Queue.Application.Services;
+using Queue.Infrastructure.Persistence.Repositories;
 
 namespace Queue.API
 {
@@ -28,9 +32,11 @@ namespace Queue.API
             });
 
             //services.AddScoped<IClientService, ClientService>();
-            //services.AddDbContext<AplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefoultConnection")));
-            //services.AddScoped<IClientServiceRepositry, ClientService>();
-            
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IClientService, ClientService>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

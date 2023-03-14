@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Queue.Domain.Model
 {
-    public class Worker : Person
+    public class DayOfTheWeek : EntityBase
     {
-        public Job Job { get; set; }
+        public string NameOfTheWeek { get; set; }
     }
 }

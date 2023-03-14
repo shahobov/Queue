@@ -11,7 +11,12 @@ namespace Queue.Application.Services
 {
     public class ClientService : BaseService<Client>, IClientService
     {
-        private readonly IClientService _clientService;
+        private readonly IRepository<Client> repository;
+
+        public ClientService(IRepository<Client> repository)
+        {
+            this.repository = repository;
+        }
         
         public override Client Get(ulong id)
         {
@@ -27,6 +32,16 @@ namespace Queue.Application.Services
             { 
                 FirstName ="Client not found"
             };
+        }
+        public override Client Create(Client entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(Client));
+            };
+            repository.Add(entity);
+            repository.SaveChanges();
+            return entity;
         }
     }
 }
