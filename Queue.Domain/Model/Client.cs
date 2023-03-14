@@ -10,6 +10,5 @@ namespace Queue.Domain.Model
     public class Client : Person
     {
       
-
     }
 }

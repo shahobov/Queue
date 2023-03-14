@@ -13,7 +13,8 @@ namespace Queue.Infrastructure.Persistence.Database
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Ignore<EntityBase>();
-           
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(Persistencee.TableConfigurations.ClientTablesConfigurations).Assembly);
+
         }
        
     }

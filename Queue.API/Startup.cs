@@ -34,7 +34,6 @@ namespace Queue.API
 
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddTransient<IClientService, ClientService>();
             services.AddDbContext<EFContext>(options =>
             {
                 options.UseInMemoryDatabase("database: Queue");
