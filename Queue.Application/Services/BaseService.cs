@@ -1,4 +1,9 @@
-﻿using Queue.Application.Common.Interfaces;
+﻿using AutoMapper;
+using Queue.Application.Common.Interfaces;
+using Queue.Application.Common.Interfaces.Repositories;
+using Queue.Application.RequestModels;
+using Queue.Application.ResponseModels;
+using Queue.Application.ResponseModels.ClientResponseModel;
 using Queue.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -8,24 +13,27 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Services
 {
-    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : EntityBase
+    public abstract class BaseService<TEntity, TResponseModel, TRequestModel> : IBaseService<TEntity, TResponseModel, TRequestModel> 
+        where TEntity : EntityBase
+        where TResponseModel : BaseResponseModel
+        where TRequestModel : BaseRequestModel
     {
-        public virtual TEntity Create(TEntity entity)
+        public virtual TResponseModel Get(ulong id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual TEntity Delete(ulong id)
+        public virtual TResponseModel Create(TRequestModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public virtual TEntity Get(ulong id)
+        public virtual TResponseModel Update(TRequestModel entity, ulong id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual TEntity Update(TEntity entity, ulong id)
+        public virtual bool Delete(ulong id)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
+using Queue.Application.RequestModels.ClientRequestModels;
 using Queue.Domain.Model;
 
 namespace Queue.API.Controllers
@@ -14,7 +15,7 @@ namespace Queue.API.Controllers
         public ClientController(IClientService clientService)
         {
             _clientService = clientService;
-            
+
         }
         [HttpGet("{id}")]
         public IActionResult Get(ulong id)
@@ -22,11 +23,22 @@ namespace Queue.API.Controllers
             return Ok(_clientService.Get(id));
         }
         [HttpPost]
-        public IActionResult Post(Client client)
+        public IActionResult Post(CreateClientRequestModel request)
         {
 
-            return Ok(_clientService.Create(client));
+            return Ok(_clientService.Create(request));
         }
+        //[HttpDelete("{id}")]
+        //public IActionResult Delete(ulong id)
+        //{
+        //    return Ok(_clientService.Delete(id));
+        //}
+        //[HttpPut("{id}")]
+        //public IActionResult Put(Client client, ulong id)
+        //{
+        //    return Ok(_clientService.Update(client, id));
+        //}
+
 
     }
 }

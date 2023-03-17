@@ -10,8 +10,8 @@ namespace Queue.Application.Common.Interfaces.Repositories
     public interface  IRepository<TEntity> where TEntity : EntityBase
     {
         void Add(TEntity entity);
-        void Delete(TEntity entity, ulong id);
-        TEntity Update(TEntity entity, ulong id);
+        void Delete(TEntity entity);
+        void Update(TEntity entity, ulong id);
         TEntity GetById(ulong id);
         int SaveChanges ();
        

@@ -14,7 +14,7 @@ namespace Queue.Infrastructure.Persistencee.TableConfigurations
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {
-           
+           builder.Property(p => p.Id).ValueGeneratedNever();
         }
     }
 }

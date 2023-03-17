@@ -26,21 +26,23 @@ namespace Queue.Infrastructure.Persistence.Repositories
             _dBset.Add(entity);
         }
 
-        public void Delete(TEntity entity, ulong id)
+        public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            
+                _dBset.Remove(entity);
         }
 
         public TEntity GetById(ulong id)
         {
-            throw new NotImplementedException();
+            return _dBset.Find(id);
+        }  
+        
+
+        public void Update(TEntity entity, ulong id)
+        {
+            _dBset.Update(entity);
         }
 
-        public int SaveChanges()=> _conrext.SaveChanges();
-        
-        public TEntity Update(TEntity entity, ulong id)
-        {
-            throw new NotImplementedException();
-        }
+        public int SaveChanges() => _conrext.SaveChanges();
     }
 }

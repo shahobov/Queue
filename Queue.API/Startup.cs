@@ -10,6 +10,7 @@ using Queue.Application.Common.Interfaces.Repositories;
 using Queue.Application.Services;
 using Queue.Infrastructure.Persistence.Database;
 using Queue.Infrastructure.Persistence.Repositories;
+using System;
 
 namespace Queue.API
 {
@@ -34,10 +35,13 @@ namespace Queue.API
 
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddDbContext<EFContext>(options =>
             {
-                options.UseInMemoryDatabase("database: Queue");
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
                 
+                //options.UseInMemoryDatabase("database: Queue");
+
             }, ServiceLifetime.Scoped);
 
 
