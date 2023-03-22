@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Queue.Domain.Model
+namespace Queue.Domain.Abstract
 {
     public abstract class Person : EntityBase
     {

@@ -4,7 +4,7 @@ using Queue.Application.Common.Interfaces.Repositories;
 using Queue.Application.RequestModels;
 using Queue.Application.ResponseModels;
 using Queue.Application.ResponseModels.ClientResponseModel;
-using Queue.Domain.Model;
+using Queue.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Queue.Domain.Model;
+using Queue.Domain.Abstract;
 using Queue.Infrastructure.Persistencee.TableConfigurations;
 
 namespace Queue.Infrastructure.Persistence.Database

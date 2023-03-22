@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Queue.Application.Common.Interfaces.Repositories;
-using Queue.Domain.Model;
+using Queue.Domain.Abstract;
 using Queue.Infrastructure.Persistence.Database;
 using System;
 using System.Collections.Generic;

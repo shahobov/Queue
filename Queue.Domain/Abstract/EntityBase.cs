@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Queue.Domain.Model
+namespace Queue.Domain.Abstract
 {
     public class EntityBase
     {
