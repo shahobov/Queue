@@ -16,6 +16,7 @@ namespace Queue.Application.Common.Interfaces
         where TRequestModel : BaseRequestModel
     {
         TResponseModel Get(ulong id);
+        TResponseModel GetAll(TRequestModel entity);
         TResponseModel Create(TRequestModel entity);
         TResponseModel Update(TRequestModel entity, ulong id);
         bool Delete(ulong id);

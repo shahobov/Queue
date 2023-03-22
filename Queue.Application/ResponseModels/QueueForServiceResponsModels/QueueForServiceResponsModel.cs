@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Queue.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Queue.Domain.Model
+namespace Queue.Application.ResponseModels.QueueForServiceResponsModels
 {
-    public class QueueForService : EntityBase
+    public class QueueForServiceResponsModel : BaseResponseModel
     {
-        public ulong ServiceId { get; set; }
+        public ulong Id { get; set; }
         public Service Service { get; set; }
-        public ulong ClientId { get; set; } 
+        
         public Client Client { get; set; }
-        public ulong WorkerId { get; set; }
+    
         public Worker Worker { get; set; }
         public ulong PositionQueueId { get; set; }
         public int QueueStatus { get; set; }

@@ -39,7 +39,10 @@ namespace Queue.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Queue.API", Version = "v1" });
             });
+
             builder.Services.AddScoped<IClientService, ClientService>();
+            builder.Services.AddScoped<IQueueForServiceService, QueueForServiceService>();
+
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
 

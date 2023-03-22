@@ -37,5 +37,10 @@ namespace Queue.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public virtual TResponseModel GetAll(TRequestModel entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

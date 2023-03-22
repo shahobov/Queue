@@ -34,14 +34,13 @@ namespace Queue.Application.Services
         }
 
         public override ClientResponseModel Get(ulong id)
-        {
-            if (id != 0)
-            {
+        {      
                 return mapper.Map<Client, ClientResponseModel>(new Client());
-               
-            }
-            throw new ArgumentNullException(nameof(Client));
         }
+        //public override ClientResponseModel GetAll(CreateClientRequestModel entity)
+        //{
+        //    return mapper.Map<Client, ClientResponseModel>(entity);
+        //}
 
         public override ClientResponseModel Update(CreateClientRequestModel request, ulong id)
         {
@@ -52,8 +51,6 @@ namespace Queue.Application.Services
             return mapper.Map<Client, ClientResponseModel>(entity);
 
         }
-
-
         public override bool Delete(ulong id)
         {
             var result = repository.GetById(id);
@@ -65,6 +62,7 @@ namespace Queue.Application.Services
             }
             return false;
         }
+      
 
     }
 }
