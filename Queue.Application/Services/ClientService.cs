@@ -33,47 +33,38 @@ namespace Queue.Application.Services
             return mapper.Map<Client, ClientResponseModel>(entity);
         }
 
-        //public override ClientResponseModel Get(ulong id)
-        //{
-        //    if(id != 0)
-        //    {
-        //        return Mapper.Map<Client, ClientResponseModel>(new Client() { FirstName = "Alijon", LastName = "Alijon" });
-        //    }
-        //    throw new ArgumentNullException(nameof(Client));
-        //}
-        //public override Client Create(Client entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(Client));
-        //    };
-        //    _repository.Add(entity);
-        //    _repository.SaveChanges();
-        //    return entity;
-        //}
-        //public override Client Update(Client client, ulong id)
-        //{
-        //    if (client != null)
-        //    {
-        //        ;
-        //        _repository.Update(client, id);
-        //        _repository.SaveChanges();
-        //        return client;
-        //    }
-        //    throw new ArgumentNullException(nameof(Client));
-        //}
-        //public override bool Delete( ulong id)
-        //{
-        //    var result=_repository.GetById(id);
-        //    if(result != null)
-        //    {
-        //        _repository.Delete(result);
-        //        _repository.SaveChanges();
-        //        return true; 
-        //    }
-        //    return false;
+        public override ClientResponseModel Get(ulong id)
+        {
+            if (id != 0)
+            {
+                return mapper.Map<Client, ClientResponseModel>(new Client());
+               
+            }
+            throw new ArgumentNullException(nameof(Client));
+        }
 
-        //}
+        public override ClientResponseModel Update(CreateClientRequestModel request, ulong id)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(Client));
+            var entity = mapper.Map<ClientRequestModel, Client>(request);
+            repository.Add(entity);
+            repository.SaveChanges();
+            return mapper.Map<Client, ClientResponseModel>(entity);
+
+        }
+
+
+        public override bool Delete(ulong id)
+        {
+            var result = repository.GetById(id);
+            if (result != null)
+            {
+                repository.Delete(result);
+                repository.SaveChanges();
+                return true;
+            }
+            return false;
+        }
 
     }
 }

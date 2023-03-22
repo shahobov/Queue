@@ -14,8 +14,7 @@ namespace Queue.Infrastructure.Persistencee.TableConfigurations
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {
-           builder.Property(p => p.Id).ValueGeneratedOnAdd();
-           builder.HasKey(p => p.Id);
+            builder.ToTable(nameof(Client));
         }
     }
 }

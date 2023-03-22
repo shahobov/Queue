@@ -28,16 +28,16 @@ namespace Queue.API.Controllers
 
             return Ok(_clientService.Create(request));
         }
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(ulong id)
-        //{
-        //    return Ok(_clientService.Delete(id));
-        //}
-        //[HttpPut("{id}")]
-        //public IActionResult Put(Client client, ulong id)
-        //{
-        //    return Ok(_clientService.Update(client, id));
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(ulong id)
+        {
+            return Ok(_clientService.Delete(id));
+        }
+        [HttpPut("{id}")]
+        public IActionResult Put(CreateClientRequestModel client, ulong id)
+        {
+            return Ok(_clientService.Update(client, id));
+        }
 
 
     }

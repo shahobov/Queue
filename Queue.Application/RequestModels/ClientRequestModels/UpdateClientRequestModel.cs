@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.RequestModels.ClientRequestModels
 {
-    public abstract class UpdateClientRequestModel :BaseRequestModel
+    public  class UpdateClientRequestModel :ClientRequestModel
     {
 
     }
