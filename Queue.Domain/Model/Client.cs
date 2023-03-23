@@ -10,6 +10,6 @@ namespace Queue.Domain.Model
 {
     public class Client : Person
     {
-      
+        public int Discount { get; set; }
     }
 }

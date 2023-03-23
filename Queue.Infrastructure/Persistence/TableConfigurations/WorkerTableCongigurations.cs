@@ -14,6 +14,7 @@ namespace Queue.Infrastructure.Persistence.TableConfigurations
         public void Configure(EntityTypeBuilder<Worker> builder)
         {
             builder.ToTable(nameof(Worker));
+
         }
     }
 }

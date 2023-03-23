@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Queue.Infrastructure.Persistence.TableConfigurations
 {
-    public class QueueForServiceTableConfigurarions : IEntityTypeConfiguration<QueueForService>
+    public class OrderTableConfigurarions : IEntityTypeConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<QueueForService> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.ToTable(nameof(QueueForService));
+            builder.ToTable(nameof(Order));
             builder.HasKey(q => q.Id);
             builder.Property(q => q.Id).ValueGeneratedOnAdd();
 

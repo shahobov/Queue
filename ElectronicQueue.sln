@@ -11,21 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queue.Domain", "Queue.Domai
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queue.Infrastructure", "Queue.Infrastructure", "{E7D485C7-DA03-470C-A75C-33799E7B4488}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.API", "Queue.API\Queue.API.csproj", "{A8EAB1B9-D291-40D6-9BC6-DBE13277F27F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.API", "Queue.API\Queue.API.csproj", "{A8EAB1B9-D291-40D6-9BC6-DBE13277F27F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Application", "Queue.Application\Queue.Application.csproj", "{D6829DF2-0C25-4EC1-92A4-170F08B2E886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Application", "Queue.Application\Queue.Application.csproj", "{D6829DF2-0C25-4EC1-92A4-170F08B2E886}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Application.Tests", "Queue.Application.Tests\Queue.Application.Tests.csproj", "{758E4231-D779-4F23-9283-55784C17F11A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Application.Tests", "Queue.Application.Tests\Queue.Application.Tests.csproj", "{758E4231-D779-4F23-9283-55784C17F11A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Domain", "Queue.Domain\Queue.Domain.csproj", "{D4A05B5B-9742-46B6-9584-92A5DC9F5A0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Domain", "Queue.Domain\Queue.Domain.csproj", "{D4A05B5B-9742-46B6-9584-92A5DC9F5A0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Domain.Tests", "Queue.Domain.Tests\Queue.Domain.Tests.csproj", "{529949D1-3633-4D20-B429-37F9FDAE2B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Domain.Tests", "Queue.Domain.Tests\Queue.Domain.Tests.csproj", "{529949D1-3633-4D20-B429-37F9FDAE2B1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Infrastructure", "Queue.Infrastructure\Queue.Infrastructure.csproj", "{BC836439-67BA-441B-841F-7788608DFCBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Infrastructure", "Queue.Infrastructure\Queue.Infrastructure.csproj", "{BC836439-67BA-441B-841F-7788608DFCBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Infrastructure.Tests", "Queue.Infrastructure.Tests\Queue.Infrastructure.Tests.csproj", "{C8DEB83E-F915-48D3-A5EE-96A368E8AEA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Infrastructure.Tests", "Queue.Infrastructure.Tests\Queue.Infrastructure.Tests.csproj", "{C8DEB83E-F915-48D3-A5EE-96A368E8AEA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.API.Tests", "Queue.API.Tests\Queue.API.Tests.csproj", "{C3D52633-39DC-4C08-B99F-62E6516072B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.API.Tests", "Queue.API.Tests\Queue.API.Tests.csproj", "{C3D52633-39DC-4C08-B99F-62E6516072B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

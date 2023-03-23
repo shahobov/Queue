@@ -13,6 +13,9 @@ namespace Queue.Application.Validations
         public CreateClientValidation()
         {
             RuleFor(x => x.FirstName).Length(0, 10);
+            RuleFor(x => x.LastName).Length(0, 10);
+            RuleFor(x => x.Address).Length(0, 15);
+            RuleFor(x => x.Age).Length(0, 3);
             RuleFor(x => x.PhoneNumber).NotNull().Length(0, 13);
         }
 

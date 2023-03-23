@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Queue.Application.RequestModels.QueueFoeServiceRequestModels
+namespace Queue.Application.RequestModels.OrderRequestModels
 {
-    public class QueueForServiceRequestModel : BaseRequestModel
+    public class OrderRequestModel : BaseRequestModel
     {
         public ulong Id { get; set; }
         public Service Service { get; set; }

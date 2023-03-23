@@ -10,5 +10,7 @@ namespace Queue.Domain.Model
     public class Worker : Person
     {
         public Job Job { get; set; }
+        public Schedule Schedule { get; set; }
+        public ulong ScheduleId { get; set; }
     }
 }
