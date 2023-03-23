@@ -3,7 +3,7 @@ using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
 using Queue.Application.RequestModels.OrderRequestModels;
 using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
-using Queue.Application.ResponseModels.OrderResponsModel;
+using Queue.Application.ResponseModels.OrderResponseModel;
 using Queue.Domain.Model;
 using System;
 
@@ -32,7 +32,12 @@ namespace Queue.Application.Services
         
         public override OrderResponsModel Get(ulong id)
         {
-            return mapper.Map<Order, OrderResponsModel>(new Order());
+            return mapper.Map<Order, OrderResponsModel>(repository.GetById(id));
+        }
+
+        public override OrderResponsModel GetAll(Order entity)
+        {
+            return mapper.Map<Order, OrderResponsModel>(repository.GetAll(entity));
         }
         public override OrderResponsModel Update(CreateOrderRequestModel entity, ulong id)
         {

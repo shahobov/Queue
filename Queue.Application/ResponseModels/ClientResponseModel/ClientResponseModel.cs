@@ -8,7 +8,7 @@ namespace Queue.Application.ResponseModels.ClientResponseModel
 {
     public  class ClientResponseModel : BaseResponseModel
     {
-        public ulong Id { get; set; }
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

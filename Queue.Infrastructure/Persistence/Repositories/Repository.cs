@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Queue.Infrastructure.Persistence.Repositories
@@ -35,14 +36,23 @@ namespace Queue.Infrastructure.Persistence.Repositories
         public TEntity GetById(ulong id)
         {
             return _dBset.Find(id);
-        }  
-        
+        }
+        public TEntity GetAll(TEntity entity)
+        {
+            return _dBset.Find();
+        }
 
+        //public IQueryable<TEntity> GetAll(int pageSize, int pageNumber, CancellationToken cancellation)
+        //{
+        //    return _dBset.Skip(pageSize * pageNumber).Take(pageSize);
+        //}
         public void Update(TEntity entity, ulong id)
         {
             _dBset.Update(entity);
         }
 
         public int SaveChanges() => _conrext.SaveChanges();
+
+       
     }
 }

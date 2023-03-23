@@ -2,9 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Queue.Infrastructure.Persistence.Database;
 
 #nullable disable
@@ -12,7 +12,7 @@ using Queue.Infrastructure.Persistence.Database;
 namespace Queue.Infrastructure.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20230323080151_Create")]
+    [Migration("20230323094506_Create")]
     partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,33 +20,35 @@ namespace Queue.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Queue.Domain.Abstract.Person", b =>
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Age")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Gender")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -57,10 +59,12 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<string>("NameOfTheWeek")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -71,13 +75,15 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -88,25 +94,27 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<decimal>("ClientId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.Property<decimal>("PositionQueueId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.Property<int>("QueueStatus")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ServiceId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.Property<double>("TotalPrice")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<decimal>("WorkerId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.HasKey("Id");
 
@@ -123,22 +131,24 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<DateTime>("EndOfWork")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Hour")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("RestDayId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.Property<DateTime>("StartOfWork")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("WorkerId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -151,19 +161,21 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExecutionTime")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -174,13 +186,15 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
                     b.Property<decimal>("ServiceID")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.Property<decimal>("WorkerID")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.HasKey("Id");
 
@@ -196,7 +210,7 @@ namespace Queue.Infrastructure.Migrations
                     b.HasBaseType("Queue.Domain.Abstract.Person");
 
                     b.Property<int>("Discount")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.ToTable("Client", (string)null);
                 });
@@ -206,15 +220,16 @@ namespace Queue.Infrastructure.Migrations
                     b.HasBaseType("Queue.Domain.Abstract.Person");
 
                     b.Property<decimal?>("JobId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.Property<decimal>("ScheduleId")
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("decimal(20,0)");
 
                     b.HasIndex("JobId");
 
                     b.HasIndex("ScheduleId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ScheduleId] IS NOT NULL");
 
                     b.ToTable("Worker", (string)null);
                 });
@@ -279,7 +294,7 @@ namespace Queue.Infrastructure.Migrations
                     b.HasOne("Queue.Domain.Abstract.Person", null)
                         .WithOne()
                         .HasForeignKey("Queue.Domain.Model.Client", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 
@@ -288,7 +303,7 @@ namespace Queue.Infrastructure.Migrations
                     b.HasOne("Queue.Domain.Abstract.Person", null)
                         .WithOne()
                         .HasForeignKey("Queue.Domain.Model.Worker", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("Queue.Domain.Model.Job", "Job")

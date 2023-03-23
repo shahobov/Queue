@@ -42,6 +42,7 @@ namespace Queue.API
 
             builder.Services.AddScoped<IClientService, ClientService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IServicesService, ServicesService>();
 
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
@@ -51,7 +52,7 @@ namespace Queue.API
 
             builder.Services.AddDbContext<EFContext>(options =>
             {
-                options.UseNpgsql(builder.Configuration.GetConnectionString("SqlServer"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
             }, ServiceLifetime.Scoped);
 
             var app = builder.Build();

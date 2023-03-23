@@ -13,8 +13,9 @@ namespace Queue.Infrastructure.Migrations
                 name: "DayOfTheWeek",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    NameOfTheWeek = table.Column<string>(type: "text", nullable: true)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameOfTheWeek = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,9 +26,10 @@ namespace Queue.Infrastructure.Migrations
                 name: "Job",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -38,13 +40,14 @@ namespace Queue.Infrastructure.Migrations
                 name: "Person",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: true),
-                    LastName = table.Column<string>(type: "text", nullable: true),
-                    Address = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    Age = table.Column<string>(type: "text", nullable: true),
-                    Gender = table.Column<bool>(type: "boolean", nullable: false)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Age = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,11 +58,12 @@ namespace Queue.Infrastructure.Migrations
                 name: "Service",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    ExecutionTime = table.Column<string>(type: "text", nullable: true),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExecutionTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,12 +74,13 @@ namespace Queue.Infrastructure.Migrations
                 name: "Schedule",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    WorkerId = table.Column<int>(type: "integer", nullable: false),
-                    StartOfWork = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndOfWork = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Hour = table.Column<int>(type: "integer", nullable: false),
-                    RestDayId = table.Column<decimal>(type: "numeric(20,0)", nullable: true)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WorkerId = table.Column<int>(type: "int", nullable: false),
+                    StartOfWork = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndOfWork = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Hour = table.Column<int>(type: "int", nullable: false),
+                    RestDayId = table.Column<decimal>(type: "decimal(20,0)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,8 +96,8 @@ namespace Queue.Infrastructure.Migrations
                 name: "Client",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    Discount = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Discount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,17 +106,16 @@ namespace Queue.Infrastructure.Migrations
                         name: "FK_Client_Person_Id",
                         column: x => x.Id,
                         principalTable: "Person",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Worker",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    JobId = table.Column<decimal>(type: "numeric(20,0)", nullable: true),
-                    ScheduleId = table.Column<decimal>(type: "numeric(20,0)", nullable: false)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    JobId = table.Column<decimal>(type: "decimal(20,0)", nullable: true),
+                    ScheduleId = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,8 +129,7 @@ namespace Queue.Infrastructure.Migrations
                         name: "FK_Worker_Person_Id",
                         column: x => x.Id,
                         principalTable: "Person",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Worker_Schedule_ScheduleId",
                         column: x => x.ScheduleId,
@@ -139,13 +142,14 @@ namespace Queue.Infrastructure.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    ServiceId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    ClientId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    WorkerId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    TotalPrice = table.Column<double>(type: "double precision", nullable: false),
-                    PositionQueueId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    QueueStatus = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    ClientId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    WorkerId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    PositionQueueId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    QueueStatus = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -174,9 +178,10 @@ namespace Queue.Infrastructure.Migrations
                 name: "WorkerSkills",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    ServiceID = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
-                    WorkerID = table.Column<decimal>(type: "numeric(20,0)", nullable: false)
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceID = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    WorkerID = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,7 +229,8 @@ namespace Queue.Infrastructure.Migrations
                 name: "IX_Worker_ScheduleId",
                 table: "Worker",
                 column: "ScheduleId",
-                unique: true);
+                unique: true,
+                filter: "[ScheduleId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkerSkills_ServiceID",

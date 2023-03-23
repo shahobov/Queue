@@ -22,11 +22,11 @@ namespace Queue.API.Controllers
         {
             return Ok(_clientService.Get(id));
         }
-        //[HttpGet]
-        //public IActionResult GetAll(ClientRequestModel entity)
-        //{
-        //    return Ok(_clientService.GetAll(entity));
-        //}
+        [HttpGet]
+        public IActionResult GetAll(Client entity)
+        {
+            return Ok(_clientService.GetAll(entity));
+        }
         [HttpPost]
         public IActionResult Post(CreateClientRequestModel request)
         {

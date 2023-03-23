@@ -2,6 +2,7 @@
 using Queue.Application.Common.Interfaces;
 using Queue.Application.RequestModels.ClientRequestModels;
 using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
+using Queue.Domain.Model;
 
 namespace Queue.API.Controllers
 {
@@ -21,11 +22,11 @@ namespace Queue.API.Controllers
         {
             return Ok(_orderService.Get(id));
         }
-        //[HttpGet]
-        //public IActionResult GetAll(ClientRequestModel entity)
-        //{
-        //    return Ok(_clientService.GetAll(entity));
-        //}
+        [HttpGet]
+        public IActionResult GetAll(Order entity)
+        {
+            return Ok(_orderService.GetAll(entity));
+        }
         [HttpPost]
         public IActionResult Post(CreateOrderRequestModel request)
         {
