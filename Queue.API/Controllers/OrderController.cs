@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Queue.Application.Common.Interfaces;
 using Queue.Application.RequestModels.ClientRequestModels;
-using Queue.Application.RequestModels.OrderRequestModels;
+using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
 using Queue.Domain.Model;
 
 namespace Queue.API.Controllers

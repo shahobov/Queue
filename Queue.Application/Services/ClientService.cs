@@ -32,11 +32,7 @@ namespace Queue.Application.Services
             repository.SaveChanges();
             return mapper.Map<Client, ClientResponseModel>(entity);
         }
-/* System.InvalidOperationException: No suitable constructor was found for
- entity type 'Client'. The following constructors had parameters 
- that could not be bound to properties of the entity type: cannot 
- bind 'connectionString', 'connectionOptions' in 'Client(object connectionString,
-  object connectionOptions)'.*/
+
         public override ClientResponseModel Get(ulong id)
         {      
                 return mapper.Map<Client, ClientResponseModel>(repository.GetById(id));

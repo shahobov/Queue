@@ -1,6 +1,11 @@
 ﻿using Queue.Domain.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Queue.Application.ResponseModels.OrderResponseModels
+namespace Queue.Application.ResponseModels.OrderResponseModel
 {
     public class OrderResponsModel : BaseResponseModel
     {

@@ -2,9 +2,10 @@
 using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
 using Queue.Application.RequestModels.OrderRequestModels;
+using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
+using Queue.Application.ResponseModels.OrderResponseModel;
 using Queue.Domain.Model;
 using System;
-using Queue.Application.ResponseModels.OrderResponseModels;
 
 namespace Queue.Application.Services
 {
@@ -41,9 +42,7 @@ namespace Queue.Application.Services
         public override OrderResponsModel Update(CreateOrderRequestModel entity, ulong id)
         {
             if (entity == null) throw new ArgumentNullException(nameof(Order));
-            var order = mapper.Map<CreateOrderRequestModel, Order>(entity);
-             repository.Update(order, id);
-             return mapper.Map<Order, OrderResponsModel>(order);
+            return base.Update(entity, id);
         }
         public override bool Delete(ulong id)
         {
