@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Queue.Application.Common.Interfaces;
-using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
 using Queue.Application.RequestModels.ServiceRequestModels;
 using Queue.Application.Services;
 using Queue.Domain.Model;

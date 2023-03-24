@@ -3,7 +3,7 @@ using Queue.Application.RequestModels.ClientRequestModels;
 using Queue.Application.RequestModels.OrderRequestModels;
 using Queue.Application.RequestModels.ServiceRequestModels;
 using Queue.Application.ResponseModels.ClientResponseModel;
-using Queue.Application.ResponseModels.OrderResponseModel;
+using Queue.Application.ResponseModels.OrderResponseModels;
 using Queue.Application.ResponseModels.ServiceResponseModels;
 using Queue.Domain.Model;
 

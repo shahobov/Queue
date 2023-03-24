@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
-using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
 using Queue.Application.RequestModels.ServiceRequestModels;
 using Queue.Application.ResponseModels.ServiceResponseModels;
 using Queue.Domain.Model;
@@ -36,7 +35,10 @@ namespace Queue.Application.Services
 
         public override ServiceResponseModel Update(CreateServiceRequestModel entity, ulong id)
         {
-            return base.Update(entity, id);
+            if (entity == null) throw new ArgumentNullException(nameof(Service));
+            var order = mapper.Map<CreateServiceRequestModel, Service>(entity);
+            repository.Update(order, id);
+            return mapper.Map<Service, ServiceResponseModel>(order);
         }
 
         public override ServiceResponseModel Get(ulong id)
