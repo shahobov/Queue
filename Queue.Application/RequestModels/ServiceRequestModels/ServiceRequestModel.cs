@@ -12,5 +12,6 @@ namespace Queue.Application.RequestModels.ServiceRequestModels
         public string Description { get; set; }
         public string ExecutionTime { get; set; }
         public decimal Price { get; set; }
+
     }
 }

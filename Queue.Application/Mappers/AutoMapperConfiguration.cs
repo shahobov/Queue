@@ -15,7 +15,9 @@ namespace Queue.Application.Mappers
         {
             CreateMap<Client, ClientResponseModel>();    
             CreateMap<CreateClientRequestModel, Client>();
-
+            CreateMap<UpdateClientRequestModel, Client>();
+            CreateMap<Client, ClientResponseModel>();
+                
             CreateMap<Order,OrderResponsModel>();
             CreateMap<OrderRequestModel, Order>();
 
