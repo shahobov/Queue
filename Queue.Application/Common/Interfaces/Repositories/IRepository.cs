@@ -14,8 +14,7 @@ namespace Queue.Application.Common.Interfaces.Repositories
         void Delete(TEntity entity);
         void Update(TEntity entity, ulong id);
         TEntity GetById(ulong id);
-        TEntity GetAll(TEntity entity);
-        //IQueryable<TEntity> GetAll(int pageSize, int pageNumber, CancellationToken cancellation);
+        IQueryable<TEntity> GetAll();
         int SaveChanges ();
        
     }

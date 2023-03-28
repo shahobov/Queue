@@ -13,22 +13,12 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Services
 {
-    public abstract class BaseService<TEntity, TResponseModel, TRequestModel> : IBaseService<TEntity, TResponseModel, TRequestModel> 
+    public abstract class BaseService<TEntity, TResponseModel, TRequestModel> : IBaseService<TEntity, TResponseModel, TRequestModel>
         where TEntity : EntityBase
         where TResponseModel : BaseResponseModel
         where TRequestModel : BaseRequestModel
     {
-        public virtual TResponseModel Get(ulong id)
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual TResponseModel Create(TRequestModel entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual TResponseModel Update(TRequestModel entity, ulong id)
         {
             throw new NotImplementedException();
         }
@@ -38,7 +28,17 @@ namespace Queue.Application.Services
             throw new NotImplementedException();
         }
 
-        public virtual TResponseModel GetAll(TEntity entity)
+        public virtual TResponseModel Get(ulong id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual IEnumerable<TResponseModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual TResponseModel Update(TRequestModel entity, ulong id)
         {
             throw new NotImplementedException();
         }

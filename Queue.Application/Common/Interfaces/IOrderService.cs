@@ -5,7 +5,7 @@ using Queue.Domain.Model;
 
 namespace Queue.Application.Common.Interfaces
 {
-    public interface IOrderService : IBaseService<Order, OrderResponsModel, CreateOrderRequestModel>
+    public interface IOrderService : IBaseService<Order, OrderResponsModel, OrderRequestModel>
     {
     }
 }

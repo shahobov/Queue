@@ -99,11 +99,11 @@ namespace Queue.Infrastructure.Migrations
                     b.Property<decimal>("ClientId")
                         .HasColumnType("decimal(20,0)");
 
-                    b.Property<decimal>("PositionQueueId")
-                        .HasColumnType("decimal(20,0)");
-
                     b.Property<int>("QueueStatus")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("QueueTimes")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("ServiceId")
                         .HasColumnType("decimal(20,0)");

@@ -12,5 +12,7 @@ namespace Queue.Domain.Model
         public Job Job { get; set; }
         public Schedule Schedule { get; set; }
         public ulong ScheduleId { get; set; }
+
+        public bool IsActived { get; set; }
     }
 }

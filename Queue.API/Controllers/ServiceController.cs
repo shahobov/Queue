@@ -25,7 +25,7 @@ namespace Queue.API.Controllers
         [HttpGet]
         public IActionResult Get(Service entity)
         {
-            return Ok(_service.GetAll(entity));
+            return Ok(_service.GetAll());
         }
         [HttpPost]
         public IActionResult Post(CreateServiceRequestModel createServiceRequestModel)

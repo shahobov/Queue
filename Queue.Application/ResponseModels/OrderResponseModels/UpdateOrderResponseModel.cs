@@ -1,13 +1,13 @@
-﻿using Queue.Domain.Model;
+﻿using Queue.Application.ResponseModels.OrderResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Queue.Application.RequestModels.OrderRequestModels
+namespace Queue.Application.ResponseModels.OrderResponseModels
 {
-    public abstract class OrderRequestModel : BaseRequestModel
+    public class UpdateOrderResponseModel : OrderResponsModel
     {
         public ulong ServiceId { get; set; }
         public ulong ClientId { get; set; }

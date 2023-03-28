@@ -37,15 +37,10 @@ namespace Queue.Infrastructure.Persistence.Repositories
         {
             return _dBset.Find(id);
         }
-        public TEntity GetAll(TEntity entity)
+        public IQueryable<TEntity> GetAll()
         {
-            return _dBset.Find();
+            return _dBset.Where( o => o.Id>0);
         }
-
-        //public IQueryable<TEntity> GetAll(int pageSize, int pageNumber, CancellationToken cancellation)
-        //{
-        //    return _dBset.Skip(pageSize * pageNumber).Take(pageSize);
-        //}
         public void Update(TEntity entity, ulong id)
         {
             _dBset.Update(entity);

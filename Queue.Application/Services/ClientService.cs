@@ -27,31 +27,34 @@ namespace Queue.Application.Services
         {
             if (request == null) throw new ArgumentNullException(nameof(Client));
 
-            var creatClientRequest = new CreateClientRequestModel();
+            var creatClientRequest = request as CreateClientRequestModel;
 
             var entity = mapper.Map<CreateClientRequestModel, Client>(creatClientRequest);
             repository.Add(entity);
             repository.SaveChanges();
-            return mapper.Map<Client, ClientResponseModel>(entity);
+            return mapper.Map<Client, CreateClientResponeModel>(entity);
         }
 
-        public override ClientResponseModel Get(ulong id)
+        public override GetClientResponseModel Get(ulong id)
         {      
-                return mapper.Map<Client, ClientResponseModel>(repository.GetById(id));
+                return mapper.Map<Client, GetClientResponseModel>(repository.GetById(id));
         }
-        public override ClientResponseModel GetAll(Client entity)
+
+        public override IEnumerable<GetClientResponseModel> GetAll()
         {
-            return mapper.Map<Client, ClientResponseModel>(repository.GetAll(entity));
+            var clients = repository.GetAll();
+            
+            return mapper.Map<IEnumerable<GetClientResponseModel>>(clients);
         }
         public override ClientResponseModel Update(ClientRequestModel request, ulong id)
         {
             var client = repository.GetById(id);
             if (client == null) throw new ArgumentNullException(nameof(Client));
-            var updateClientRequest = new UpdateClientRequestModel();
+            var updateClientRequest = request as UpdateClientRequestModel;
             mapper.Map<UpdateClientRequestModel, Client>(updateClientRequest);
             repository.Update(client,id);
             repository.SaveChanges();
-            return mapper.Map<Client, ClientResponseModel>(client);
+            return mapper.Map<Client, UpdateClientResponseModel>(client);
 
         }
         public override bool Delete(ulong id)

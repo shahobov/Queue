@@ -12,7 +12,7 @@ using Queue.Infrastructure.Persistence.Database;
 namespace Queue.Infrastructure.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20230323094506_Create")]
+    [Migration("20230327183737_Create")]
     partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,11 +101,11 @@ namespace Queue.Infrastructure.Migrations
                     b.Property<decimal>("ClientId")
                         .HasColumnType("decimal(20,0)");
 
-                    b.Property<decimal>("PositionQueueId")
-                        .HasColumnType("decimal(20,0)");
-
                     b.Property<int>("QueueStatus")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("QueueTimes")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("ServiceId")
                         .HasColumnType("decimal(20,0)");

@@ -148,7 +148,7 @@ namespace Queue.Infrastructure.Migrations
                     ClientId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     WorkerId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     TotalPrice = table.Column<double>(type: "float", nullable: false),
-                    PositionQueueId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    QueueTimes = table.Column<DateTime>(type: "datetime2", nullable: false),
                     QueueStatus = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

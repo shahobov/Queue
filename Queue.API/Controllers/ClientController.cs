@@ -23,9 +23,9 @@ namespace Queue.API.Controllers
             return Ok(_clientService.Get(id));
         }
         [HttpGet]
-        public IActionResult GetAll(Client entity)
+        public IActionResult GetAll()
         {
-            return Ok(_clientService.GetAll(entity));
+            return Ok(_clientService.GetAll());
         }
         [HttpPost]
         public IActionResult Post(CreateClientRequestModel request)
