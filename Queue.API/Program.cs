@@ -43,6 +43,8 @@ namespace Queue.API
             builder.Services.AddScoped<IClientService, ClientService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IServicesService, ServicesService>();
+            builder.Services.AddScoped<IJobService, JobService>();
+            builder.Services.AddScoped<IWorkerSkillsService, WorkerSkillsService>();
 
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);

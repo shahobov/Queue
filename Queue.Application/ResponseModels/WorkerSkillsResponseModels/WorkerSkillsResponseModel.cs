@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.ResponseModels.WorkerSkillsResponseModels
 {
-    public class WorkerSkillsResponseModel:BaseResponseModel
+    public abstract class WorkerSkillsResponseModel:BaseResponseModel
     {
         public ulong WorkerID { get; set; }
         public ulong ServiceID { get; set; }
