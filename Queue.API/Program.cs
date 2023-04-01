@@ -43,6 +43,11 @@ namespace Queue.API
             builder.Services.AddScoped<IClientService, ClientService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IServicesService, ServicesService>();
+            builder.Services.AddScoped<IWorkerService, WorkerService>();
+            builder.Services.AddScoped<IJobService, JobService>();
+            builder.Services.AddScoped<IScheduleDetilesService, ScheduleDetilesService>();
+            builder.Services.AddScoped<IScheduleService, ScheduleService>();
+            builder.Services.AddScoped<IWorkerSkillsService, WorkerSkillsService>();
 
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
@@ -56,6 +61,8 @@ namespace Queue.API
             }, ServiceLifetime.Scoped);
 
             var app = builder.Build();
+
+            
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

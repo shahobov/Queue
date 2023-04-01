@@ -10,19 +10,6 @@ namespace Queue.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "DayOfTheWeek",
-                columns: table => new
-                {
-                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NameOfTheWeek = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DayOfTheWeek", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Job",
                 columns: table => new
                 {
@@ -55,6 +42,19 @@ namespace Queue.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Schedule",
+                columns: table => new
+                {
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedule", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Service",
                 columns: table => new
                 {
@@ -68,28 +68,6 @@ namespace Queue.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Service", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Schedule",
-                columns: table => new
-                {
-                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WorkerId = table.Column<int>(type: "int", nullable: false),
-                    StartOfWork = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndOfWork = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hour = table.Column<int>(type: "int", nullable: false),
-                    RestDayId = table.Column<decimal>(type: "decimal(20,0)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Schedule", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Schedule_DayOfTheWeek_RestDayId",
-                        column: x => x.RestDayId,
-                        principalTable: "DayOfTheWeek",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -110,12 +88,40 @@ namespace Queue.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ScheduleDetiles",
+                columns: table => new
+                {
+                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ScheduleId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    ScheduleId1 = table.Column<decimal>(type: "decimal(20,0)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScheduleDetiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ScheduleDetiles_Schedule_ScheduleId",
+                        column: x => x.ScheduleId,
+                        principalTable: "Schedule",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ScheduleDetiles_Schedule_ScheduleId1",
+                        column: x => x.ScheduleId1,
+                        principalTable: "Schedule",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Worker",
                 columns: table => new
                 {
                     Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     JobId = table.Column<decimal>(type: "decimal(20,0)", nullable: true),
-                    ScheduleId = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                    ScheduleId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    IsActived = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,9 +222,14 @@ namespace Queue.Infrastructure.Migrations
                 column: "WorkerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Schedule_RestDayId",
-                table: "Schedule",
-                column: "RestDayId");
+                name: "IX_ScheduleDetiles_ScheduleId",
+                table: "ScheduleDetiles",
+                column: "ScheduleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleDetiles_ScheduleId1",
+                table: "ScheduleDetiles",
+                column: "ScheduleId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Worker_JobId",
@@ -228,9 +239,7 @@ namespace Queue.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Worker_ScheduleId",
                 table: "Worker",
-                column: "ScheduleId",
-                unique: true,
-                filter: "[ScheduleId] IS NOT NULL");
+                column: "ScheduleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkerSkills_ServiceID",
@@ -247,6 +256,9 @@ namespace Queue.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "ScheduleDetiles");
 
             migrationBuilder.DropTable(
                 name: "WorkerSkills");
@@ -268,9 +280,6 @@ namespace Queue.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Schedule");
-
-            migrationBuilder.DropTable(
-                name: "DayOfTheWeek");
         }
     }
 }

@@ -30,16 +30,16 @@ namespace Queue.API.Controllers
         [HttpPost]
         public IActionResult Post(CreateClientRequestModel request)
         {
-
             return Ok(_clientService.Create(request));
         }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(ulong id)
         {
             return Ok(_clientService.Delete(id));
         }
         [HttpPut("{id}")]
-        public IActionResult Put(CreateClientRequestModel client, ulong id)
+        public IActionResult Put(UpdateClientRequestModel client, ulong id)
         {
             return Ok(_clientService.Update(client, id));
         }

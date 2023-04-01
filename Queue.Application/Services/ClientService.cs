@@ -26,9 +26,7 @@ namespace Queue.Application.Services
         public override ClientResponseModel Create(ClientRequestModel request)
         {
             if (request == null) throw new ArgumentNullException(nameof(Client));
-
             var creatClientRequest = request as CreateClientRequestModel;
-
             var entity = mapper.Map<CreateClientRequestModel, Client>(creatClientRequest);
             repository.Add(entity);
             repository.SaveChanges();

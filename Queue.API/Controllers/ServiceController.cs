@@ -23,7 +23,7 @@ namespace Queue.API.Controllers
             return Ok(_service.Get(id));
         }
         [HttpGet]
-        public IActionResult Get(Service entity)
+        public IActionResult GetAll()
         {
             return Ok(_service.GetAll());
         }
@@ -38,7 +38,7 @@ namespace Queue.API.Controllers
             return Ok(_service.Delete(id));
         }
         [HttpPut("{id}")]
-        public IActionResult Put(CreateServiceRequestModel service, ulong id)
+        public IActionResult Put(UpdateServiceRequestModel service, ulong id)
         {
             return Ok(_service.Update(service, id));
         }

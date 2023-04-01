@@ -11,6 +11,7 @@ namespace Queue.Domain.Model
     {
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
-        public Schedule ScheduleId { get; set; }
+        public ulong ScheduleId { get; set; }
+        public Schedule Schedule { get; set; }
     }
 }

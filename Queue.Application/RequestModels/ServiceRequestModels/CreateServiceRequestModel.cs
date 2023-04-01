@@ -8,6 +8,9 @@ namespace Queue.Application.RequestModels.ServiceRequestModels
 {
     public class CreateServiceRequestModel : ServiceRequestModel
     {
-
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public TimeSpan ExecutionTime { get; set; }
+        public decimal Price { get; set; }
     }
 }

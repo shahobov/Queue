@@ -39,7 +39,7 @@ namespace Queue.API.Controllers
             return Ok(_orderService.Delete(id));
         }
         [HttpPut("{id}")]
-        public IActionResult Put(CreateOrderRequestModel client, ulong id)
+        public IActionResult Put(UpdateOrderRequestModel client, ulong id)
         {
             return Ok(_orderService.Update(client, id));
         }

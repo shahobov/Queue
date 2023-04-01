@@ -12,7 +12,7 @@ using Queue.Infrastructure.Persistence.Database;
 namespace Queue.Infrastructure.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20230327183737_Create")]
+    [Migration("20230330193543_Create")]
     partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,22 +55,6 @@ namespace Queue.Infrastructure.Migrations
                     b.ToTable("Person", (string)null);
                 });
 
-            modelBuilder.Entity("Queue.Domain.Model.DayOfTheWeek", b =>
-                {
-                    b.Property<decimal>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
-
-                    b.Property<string>("NameOfTheWeek")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DayOfTheWeek");
-                });
-
             modelBuilder.Entity("Queue.Domain.Model.Job", b =>
                 {
                     b.Property<decimal>("Id")
@@ -87,7 +71,7 @@ namespace Queue.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Job");
+                    b.ToTable("Job", (string)null);
                 });
 
             modelBuilder.Entity("Queue.Domain.Model.Order", b =>
@@ -135,26 +119,41 @@ namespace Queue.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("EndOfWork")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Hour")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("RestDayId")
-                        .HasColumnType("decimal(20,0)");
-
-                    b.Property<DateTime>("StartOfWork")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("WorkerId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestDayId");
+                    b.ToTable("Schedule", (string)null);
+                });
 
-                    b.ToTable("Schedule");
+            modelBuilder.Entity("Queue.Domain.Model.ScheduleDetiles", b =>
+                {
+                    b.Property<decimal>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(20,0)");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("EndDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("ScheduleId")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.Property<decimal?>("ScheduleId1")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.Property<DateTime>("StartDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScheduleId");
+
+                    b.HasIndex("ScheduleId1");
+
+                    b.ToTable("ScheduleDetiles", (string)null);
                 });
 
             modelBuilder.Entity("Queue.Domain.Model.Service", b =>
@@ -219,6 +218,9 @@ namespace Queue.Infrastructure.Migrations
                 {
                     b.HasBaseType("Queue.Domain.Abstract.Person");
 
+                    b.Property<bool>("IsActived")
+                        .HasColumnType("bit");
+
                     b.Property<decimal?>("JobId")
                         .HasColumnType("decimal(20,0)");
 
@@ -227,9 +229,7 @@ namespace Queue.Infrastructure.Migrations
 
                     b.HasIndex("JobId");
 
-                    b.HasIndex("ScheduleId")
-                        .IsUnique()
-                        .HasFilter("[ScheduleId] IS NOT NULL");
+                    b.HasIndex("ScheduleId");
 
                     b.ToTable("Worker", (string)null);
                 });
@@ -261,13 +261,19 @@ namespace Queue.Infrastructure.Migrations
                     b.Navigation("Worker");
                 });
 
-            modelBuilder.Entity("Queue.Domain.Model.Schedule", b =>
+            modelBuilder.Entity("Queue.Domain.Model.ScheduleDetiles", b =>
                 {
-                    b.HasOne("Queue.Domain.Model.DayOfTheWeek", "RestDay")
+                    b.HasOne("Queue.Domain.Model.Schedule", "Schedule")
                         .WithMany()
-                        .HasForeignKey("RestDayId");
+                        .HasForeignKey("ScheduleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("RestDay");
+                    b.HasOne("Queue.Domain.Model.Schedule", null)
+                        .WithMany("ScheduleDetiles")
+                        .HasForeignKey("ScheduleId1");
+
+                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Queue.Domain.Model.WorkerSkills", b =>
@@ -311,8 +317,8 @@ namespace Queue.Infrastructure.Migrations
                         .HasForeignKey("JobId");
 
                     b.HasOne("Queue.Domain.Model.Schedule", "Schedule")
-                        .WithOne("Worker")
-                        .HasForeignKey("Queue.Domain.Model.Worker", "ScheduleId")
+                        .WithMany()
+                        .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -323,7 +329,7 @@ namespace Queue.Infrastructure.Migrations
 
             modelBuilder.Entity("Queue.Domain.Model.Schedule", b =>
                 {
-                    b.Navigation("Worker");
+                    b.Navigation("ScheduleDetiles");
                 });
 #pragma warning restore 612, 618
         }
