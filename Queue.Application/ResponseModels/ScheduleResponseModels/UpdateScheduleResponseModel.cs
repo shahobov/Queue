@@ -10,6 +10,6 @@ namespace Queue.Application.ResponseModels.ScheduleResponseModels
     public class UpdateScheduleResponseModel : ScheduleResponseModel
     {
         public DateTime Date { get; set; }
-        public List<ScheduleDetiles> ScheduleDetiles { get; set; }
+        public List<ScheduleDetails> ScheduleDetiles { get; set; }
     }
 }

@@ -18,7 +18,5 @@ namespace Queue.Application.Validations
             RuleFor(x => x.Age).Length(1, 3);
             RuleFor(x => x.PhoneNumber).MaximumLength(9).MinimumLength(9);
         }
-
-        
     }
 }

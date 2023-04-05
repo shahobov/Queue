@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Services
 {
-    public class ScheduleDetilesService : BaseService<ScheduleDetiles, ScheduleDetailesResponseModel,ScheduleDetilesRequestModel>, IScheduleDetilesService
+    public class ScheduleDetilesService : BaseService<ScheduleDetails, ScheduleDetailesResponseModel,ScheduleDetilesRequestModel>, IScheduleDetilesService
     {
-        private readonly IRepository<ScheduleDetiles> _repository;
+        private readonly IRepository<ScheduleDetails> _repository;
         private readonly IMapper _mapper;
 
-        public ScheduleDetilesService(IRepository<ScheduleDetiles> repository, IMapper mapper)
+        public ScheduleDetilesService(IRepository<ScheduleDetails> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -27,15 +27,15 @@ namespace Queue.Application.Services
         {
             if(request == null) throw new ArgumentNullException(nameof(request));
             var createRequestModel = request as CreateScheduleDetilesRequestModel;
-            var entity = _mapper.Map<CreateScheduleDetilesRequestModel, ScheduleDetiles>(createRequestModel);
+            var entity = _mapper.Map<CreateScheduleDetilesRequestModel, ScheduleDetails>(createRequestModel);
             _repository.Add(entity);
             _repository.SaveChanges();
-            return _mapper.Map<ScheduleDetiles,CreateScheduleDetilesResponseModel>(entity);
+            return _mapper.Map<ScheduleDetails,CreateScheduleDetilesResponseModel>(entity);
         }
 
         public override ScheduleDetailesResponseModel Get(ulong id)
         {
-            return _mapper.Map<ScheduleDetiles,ScheduleDetailesResponseModel>(_repository.GetById(id));
+            return _mapper.Map<ScheduleDetails,ScheduleDetailesResponseModel>(_repository.GetById(id));
         }
 
         public override IEnumerable<ScheduleDetailesResponseModel> GetAll()
@@ -46,12 +46,12 @@ namespace Queue.Application.Services
         public override ScheduleDetailesResponseModel Update(ScheduleDetilesRequestModel request, ulong id)
         {
             var schedule = _repository.GetById(id);
-            if(schedule == null) throw new ArgumentNullException(nameof(ScheduleDetiles));
+            if(schedule == null) throw new ArgumentNullException(nameof(ScheduleDetails));
             var updateScheduleDetailesResponsModel = request as UpdateScheduleDetilesRequestModel;
-            _mapper.Map<UpdateScheduleDetilesRequestModel, ScheduleDetiles>(updateScheduleDetailesResponsModel);
+            _mapper.Map<UpdateScheduleDetilesRequestModel, ScheduleDetails>(updateScheduleDetailesResponsModel);
             _repository.Update(schedule, id);
             _repository.SaveChanges();
-            return _mapper.Map<ScheduleDetiles,UpdateScheduleDetilesResponseModel>(schedule);
+            return _mapper.Map<ScheduleDetails,UpdateScheduleDetilesResponseModel>(schedule);
         }
 
         public override bool Delete(ulong id)

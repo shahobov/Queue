@@ -67,11 +67,11 @@ namespace Queue.Application.Mappers
             CreateMap<Schedule, GetScheduleResponseModel>();
 
 
-            CreateMap<CreateScheduleDetilesRequestModel, ScheduleDetiles>();
-            CreateMap<UpdateScheduleDetilesRequestModel, ScheduleDetiles>();
-            CreateMap<ScheduleDetiles, CreateScheduleDetilesResponseModel>();
-            CreateMap<ScheduleDetiles, UpdateScheduleDetilesResponseModel>();
-            CreateMap<ScheduleDetiles, GetScheduleDetilesResponseModel>();
+            CreateMap<CreateScheduleDetilesRequestModel, ScheduleDetails>();
+            CreateMap<UpdateScheduleDetilesRequestModel, ScheduleDetails>();
+            CreateMap<ScheduleDetails, CreateScheduleDetilesResponseModel>();
+            CreateMap<ScheduleDetails, UpdateScheduleDetilesResponseModel>();
+            CreateMap<ScheduleDetails, GetScheduleDetilesResponseModel>();
 
 
             CreateMap<CreateWorkerSkillsRequestModel, WorkerSkills>();

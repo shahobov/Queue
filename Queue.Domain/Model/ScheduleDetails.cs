@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Domain.Model
 {
-    public class ScheduleDetiles :EntityBase
+    public class ScheduleDetails : EntityBase
     {
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
