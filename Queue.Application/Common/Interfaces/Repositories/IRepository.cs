@@ -13,7 +13,7 @@ namespace Queue.Application.Common.Interfaces.Repositories
         void Add(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity, ulong id);
-        TEntity GetById(ulong id);
+        TEntity? GetById(ulong? id);
         IQueryable<TEntity> GetAll();
         int SaveChanges ();
        

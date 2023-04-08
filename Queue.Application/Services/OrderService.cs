@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
+using Queue.Application.Exceptions;
 using Queue.Application.RequestModels.OrderRequestModels;
 using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
 using Queue.Application.ResponseModels.OrderResponseModel;
@@ -14,82 +15,89 @@ namespace Queue.Application.Services
 {
     public class OrderService: BaseService<Order, OrderResponsModel, OrderRequestModel>,IOrderService
     {
-        private readonly IRepository<Order> repository;
-        private readonly IRepository<Worker> worker;
-        private readonly IRepository<Service> service;
+        private readonly IRepository<Order> orderRepository;
+        private readonly IRepository<Worker> workerRepository;
+        private readonly IRepository<Service> serviceRepository;
+        private readonly IRepository<Client> clientRepository;
         private readonly IMapper mapper;
 
-        public OrderService(IRepository<Order> repository, IMapper mapper)
+        public OrderService(IRepository<Order> _orderRepository, IMapper mapper, IRepository<Worker> workerRepository, IRepository<Service> serviceRepository, IRepository<Client> clientRepository)
         {
-            this.repository = repository;
+            orderRepository = _orderRepository;
             this.mapper = mapper;
+            this.workerRepository = workerRepository;
+            this.serviceRepository = serviceRepository;
+            this.clientRepository = clientRepository;
         }
 
+        public bool Validate(OrderRequestModel orderRequestModel)
+        {   
+            var isExitsClient = clientRepository.GetById(orderRequestModel.ClientId);
+            if (isExitsClient == null)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound,nameof(Client));
+
+            var isExitstWorker = workerRepository.GetById(orderRequestModel.WorkerId);
+            if (isExitstWorker == null)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Worker));
+
+            var isExitsService = serviceRepository.GetById(orderRequestModel.ServiceId);
+            if (isExitsService == null)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Service));
+
+            var isExitsOrder = orderRepository
+                            .GetAll()
+                            .Where(o => o.WorkerId == orderRequestModel.WorkerId &&
+                                  o.OrderDate == orderRequestModel.OrderDate &&
+                                  (orderRequestModel.StartServiceTimes > o.StartServiceTimes &&
+                                  orderRequestModel.StartServiceTimes < o.EndExequteTimeService) &&
+                                  o.QueueStatus == 1)
+                            .Count();
+            if (isExitsOrder == 1)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Order));
+            return true;
+
+        }
         public override OrderResponsModel Create(OrderRequestModel orders)
         {
-            var isExitOrder = repository.GetAll().
-                Where( o => o.WorkerId==orders.WorkerId &&
-                o.OrderDate==orders.OrderDate &&
-                (orders.StartServiceTimes > o.StartServiceTimes && 
-                orders.StartServiceTimes < o.EndExequteTImeService) && 
-                o.QueueStatus==1).Count();
-            var isWorker = worker.GetById(orders.WorkerId);
-            var isService = service.GetById(orders.ServiceId);
-
-            if (orders == null) throw new ArgumentNullException(nameof(Order));
-            if (isWorker != null && isService != null)
-            {
-                if (isExitOrder == 0)
-                {
-                    var createOrderRequest = orders as CreateOrderRequestModel;
-                    var entity = mapper.Map<CreateOrderRequestModel, Order>(createOrderRequest);
-                    repository.Add(entity);
-                    repository.SaveChanges();
-                    
-                    return mapper.Map<Order, CreateOrderResponseModel>(entity);
-                }
-                else
-                {
-                    throw new ArgumentException("worker is busy at this time");
-                }
-            }
-            else
-            {
-                throw new ArgumentException("Worker or Service not found");
-            }
-            
+           Validate(orders);
+           var createOrderRequest = orders as CreateOrderRequestModel;
+           var entity = mapper.Map<CreateOrderRequestModel, Order>(createOrderRequest);
+           entity.EndExequteTimeService = orders.StartServiceTimes.AddMinutes(serviceRepository.GetById(orders.ServiceId).ExecutionTime);
+           orderRepository.Add(entity);
+           orderRepository.SaveChanges();
+           return mapper.Map<Order, CreateOrderResponseModel>(entity);
         }
 
         public override OrderResponsModel Get(ulong id)
         {
-            return mapper.Map<Order, GetOrderResponseModel>(repository.GetById(id));
+            return mapper.Map<Order, GetOrderResponseModel>(orderRepository.GetById(id));
         }
 
         public override IEnumerable<OrderResponsModel> GetAll()
         {
-            var clients = repository.GetAll();
+            var clients = orderRepository.GetAll();
 
             return mapper.Map<IEnumerable<GetOrderResponseModel>>(clients);
         }
 
         public override OrderResponsModel Update(OrderRequestModel request, ulong id)
         {
-            var order = repository.GetById(id);
-            if (request == null) throw new ArgumentNullException(nameof(Order));
+            Validate(request);
+            var order = orderRepository.GetById(id);
             var updateOrderRequest = request as UpdateOrderRequestModel;
             mapper.Map<UpdateOrderRequestModel, Client>(updateOrderRequest);
-            repository.Update(order, id);
-            repository.SaveChanges();
+            orderRepository.Update(order, id);
+            orderRepository.SaveChanges();
             return mapper.Map<Order, UpdateOrderResponseModel>(order);
         }
 
         public override bool Delete(ulong id)
         {
-            var result = repository.GetById(id);
+            var result = orderRepository.GetById(id);
             if (result != null)
             {
-                repository.Delete(result);
-                repository.SaveChanges();
+                orderRepository.Delete(result);
+                orderRepository.SaveChanges();
                 return true;
             }
             return false;

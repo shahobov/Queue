@@ -17,8 +17,8 @@ namespace Queue.Domain.Model
         public Worker Worker { get; set; }
         public double TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
-        public TimeSpan StartServiceTimes { get; set; }
-        public TimeSpan EndExequteTImeService { get; set; }
+        public DateTime StartServiceTimes { get; set; } 
+        public DateTime EndExequteTimeService { get; set; } 
         public int QueueStatus { get; set; }
     }
 }

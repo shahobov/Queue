@@ -10,7 +10,7 @@ namespace Queue.Application.ResponseModels.ServiceResponseModels
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public TimeSpan ExecutionTime { get; set; }
+        public int ExecutionTime { get; set; }
         public decimal Price { get; set; }
     }
 }

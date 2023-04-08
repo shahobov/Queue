@@ -8,6 +8,7 @@ namespace Queue.Application.RequestModels.ClientRequestModels
 {
     public abstract class ClientRequestModel : BaseRequestModel
     {
+        public ulong Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

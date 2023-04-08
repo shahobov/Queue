@@ -30,10 +30,10 @@ namespace Queue.Infrastructure.Persistence.Repositories
         public void Delete(TEntity entity)
         {
             
-                _dBset.Remove(entity);
+             _dBset.Remove(entity);
         }
 
-        public TEntity GetById(ulong id)
+        public TEntity? GetById(ulong? id)
         {
             return _dBset.Find(id);
         }
