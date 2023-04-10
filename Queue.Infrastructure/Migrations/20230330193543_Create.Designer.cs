@@ -127,7 +127,7 @@ namespace Queue.Infrastructure.Migrations
                     b.ToTable("Schedule", (string)null);
                 });
 
-            modelBuilder.Entity("Queue.Domain.Model.ScheduleDetiles", b =>
+            modelBuilder.Entity("Queue.Domain.Model.ScheduleDetails", b =>
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +153,7 @@ namespace Queue.Infrastructure.Migrations
 
                     b.HasIndex("ScheduleId1");
 
-                    b.ToTable("ScheduleDetiles", (string)null);
+                    b.ToTable("ScheduleDetails", (string)null);
                 });
 
             modelBuilder.Entity("Queue.Domain.Model.Service", b =>
@@ -261,7 +261,7 @@ namespace Queue.Infrastructure.Migrations
                     b.Navigation("Worker");
                 });
 
-            modelBuilder.Entity("Queue.Domain.Model.ScheduleDetiles", b =>
+            modelBuilder.Entity("Queue.Domain.Model.ScheduleDetails", b =>
                 {
                     b.HasOne("Queue.Domain.Model.Schedule", "Schedule")
                         .WithMany()
@@ -270,7 +270,7 @@ namespace Queue.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Queue.Domain.Model.Schedule", null)
-                        .WithMany("ScheduleDetiles")
+                        .WithMany("ScheduleDetails")
                         .HasForeignKey("ScheduleId1");
 
                     b.Navigation("Schedule");
@@ -329,7 +329,7 @@ namespace Queue.Infrastructure.Migrations
 
             modelBuilder.Entity("Queue.Domain.Model.Schedule", b =>
                 {
-                    b.Navigation("ScheduleDetiles");
+                    b.Navigation("ScheduleDetails");
                 });
 #pragma warning restore 612, 618
         }

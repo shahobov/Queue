@@ -16,6 +16,5 @@ namespace Queue.Application.Common.Interfaces.Repositories
         TEntity? GetById(ulong? id);
         IQueryable<TEntity> GetAll();
         int SaveChanges ();
-       
     }
 }

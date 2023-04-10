@@ -11,6 +11,5 @@ namespace Queue.Application.Common.Interfaces
 {
     public interface IServicesService : IBaseService<Service, ServiceResponseModel, ServiceRequestModel>
     {
-        
     }
 }

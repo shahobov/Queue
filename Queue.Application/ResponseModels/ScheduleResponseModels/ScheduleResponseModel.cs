@@ -8,6 +8,5 @@ namespace Queue.Application.ResponseModels.ScheduleResponseModels
 {
     public abstract class ScheduleResponseModel : BaseResponseModel
     {
-        
     }
 }

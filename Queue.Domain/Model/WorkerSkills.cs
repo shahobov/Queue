@@ -13,6 +13,5 @@ namespace Queue.Domain.Model
         public ulong ServiceID { get; set; }
         public Worker Workers { get; set; }
         public ulong WorkerID { get; set; }
-
     }
 }

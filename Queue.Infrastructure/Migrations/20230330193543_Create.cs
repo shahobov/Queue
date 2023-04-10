@@ -88,7 +88,7 @@ namespace Queue.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ScheduleDetiles",
+                name: "ScheduleDetails",
                 columns: table => new
                 {
                     Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
@@ -223,12 +223,12 @@ namespace Queue.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScheduleDetiles_ScheduleId",
-                table: "ScheduleDetiles",
+                table: "ScheduleDetails",
                 column: "ScheduleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScheduleDetiles_ScheduleId1",
-                table: "ScheduleDetiles",
+                table: "ScheduleDetails",
                 column: "ScheduleId1");
 
             migrationBuilder.CreateIndex(
@@ -258,7 +258,7 @@ namespace Queue.Infrastructure.Migrations
                 name: "Order");
 
             migrationBuilder.DropTable(
-                name: "ScheduleDetiles");
+                name: "ScheduleDetails");
 
             migrationBuilder.DropTable(
                 name: "WorkerSkills");

@@ -9,6 +9,5 @@ namespace Queue.Application.ResponseModels.WorkerResponseModels
 {
     public abstract class WorkerResponseModel : BaseResponseModel
     {
-        
     }
 }

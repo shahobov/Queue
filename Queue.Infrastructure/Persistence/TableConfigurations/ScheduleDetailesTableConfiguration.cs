@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Queue.Infrastructure.Persistence.TableConfigurations
 {
-    public class ScheduleDetailesTableConfiguration : IEntityTypeConfiguration<ScheduleDetiles>
+    public class ScheduleDetailesTableConfiguration : IEntityTypeConfiguration<ScheduleDetails>
     {
-        public void Configure(EntityTypeBuilder<ScheduleDetiles> builder)
+        public void Configure(EntityTypeBuilder<ScheduleDetails> builder)
         {
-            builder.ToTable(nameof(ScheduleDetiles));
+            builder.ToTable(nameof(ScheduleDetails));
 
             builder.HasKey(x => x.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd();

@@ -17,16 +17,19 @@ namespace Queue.API.Controllers
             _clientService = clientService;
 
         }
+
         [HttpGet("{id}")]
         public IActionResult Get(ulong id)
         {
             return Ok(_clientService.Get(id));
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_clientService.GetAll());
         }
+
         [HttpPost]
         public IActionResult Post(CreateClientRequestModel request)
         {
@@ -38,12 +41,11 @@ namespace Queue.API.Controllers
         {
             return Ok(_clientService.Delete(id));
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(UpdateClientRequestModel client, ulong id)
         {
             return Ok(_clientService.Update(client, id));
         }
-
-       
     }
 }

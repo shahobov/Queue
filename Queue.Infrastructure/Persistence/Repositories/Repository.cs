@@ -22,6 +22,7 @@ namespace Queue.Infrastructure.Persistence.Repositories
             _dBset = _conrext.Set<TEntity>();
            
         }
+
         public void Add(TEntity entity)
         {
             _dBset.Add(entity);
@@ -29,14 +30,14 @@ namespace Queue.Infrastructure.Persistence.Repositories
 
         public void Delete(TEntity entity)
         {
-            
-             _dBset.Remove(entity);
+            _dBset.Remove(entity);
         }
 
         public TEntity? GetById(ulong? id)
         {
             return _dBset.Find(id);
         }
+
         public IQueryable<TEntity> GetAll()
         {
             return _dBset.Where( o => o.Id>0);
@@ -47,7 +48,5 @@ namespace Queue.Infrastructure.Persistence.Repositories
         }
 
         public int SaveChanges() => _conrext.SaveChanges();
-
-       
     }
 }

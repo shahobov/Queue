@@ -24,6 +24,7 @@ namespace Queue.Application.Services
             this.clientRepository = _repository;
             this.mapper = mapper;
         }
+
         public bool Validate(ClientRequestModel clientRequestModel)
         {
             var isExitsClient = clientRepository.GetById(clientRequestModel.Id);
@@ -32,6 +33,7 @@ namespace Queue.Application.Services
             return true;
 
         }
+
         public override ClientResponseModel Create(ClientRequestModel request)
         {
             Validate(request);
@@ -53,6 +55,7 @@ namespace Queue.Application.Services
             
             return mapper.Map<IEnumerable<GetClientResponseModel>>(clients);
         }
+
         public override ClientResponseModel Update(ClientRequestModel request, ulong id)
         {
             Validate(request);
@@ -63,8 +66,8 @@ namespace Queue.Application.Services
             clientRepository.Update(client,id);
             clientRepository.SaveChanges();
             return mapper.Map<Client, UpdateClientResponseModel>(client);
-
         }
+
         public override bool Delete(ulong id)
         {
             var result = clientRepository.GetById(id);
@@ -76,8 +79,5 @@ namespace Queue.Application.Services
             }
             return false;
         }
-        
-      
-
     }
 }

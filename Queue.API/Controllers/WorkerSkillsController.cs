@@ -14,11 +14,13 @@ namespace Queue.API.Controllers
         {
             _workerSkillsService = workerSkillsService;
         }
+
         [HttpGet("{id}")]
         public IActionResult Get( ulong id)
         {
             return Ok(_workerSkillsService.Get(id));
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -29,11 +31,13 @@ namespace Queue.API.Controllers
         {
             return Ok(_workerSkillsService.Create(request));
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(UpdateWorkerSkillsRequestModel request, ulong id)
         {
             return Ok(_workerSkillsService.Update(request,id));
         }
+
         [HttpDelete("{id}")] 
         public IActionResult Delete(ulong id)
         {

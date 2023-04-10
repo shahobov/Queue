@@ -13,7 +13,5 @@ namespace Queue.Domain.Model
         public string Description { get; set; }
         public int ExecutionTime { get; set; }
         public decimal Price { get; set; }
-        
-
     }
 }

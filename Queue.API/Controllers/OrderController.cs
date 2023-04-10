@@ -15,29 +15,32 @@ namespace Queue.API.Controllers
         public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
-
         }
+
         [HttpGet("{id}")]
         public IActionResult Get(ulong id)
         {
             return Ok(_orderService.Get(id));
         }
+
         [HttpGet]
         public IActionResult GetAll(Order entity)
         {
             return Ok(_orderService.GetAll());
         }
+
         [HttpPost]
         public IActionResult Post(CreateOrderRequestModel request)
         {
-
             return Ok(_orderService.Create(request));
         }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(ulong id)
         {
             return Ok(_orderService.Delete(id));
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(UpdateOrderRequestModel client, ulong id)
         {

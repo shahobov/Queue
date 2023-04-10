@@ -45,7 +45,7 @@ namespace Queue.API
             builder.Services.AddScoped<IServicesService, ServicesService>();
             builder.Services.AddScoped<IWorkerService, WorkerService>();
             builder.Services.AddScoped<IJobService, JobService>();
-            builder.Services.AddScoped<IScheduleDetilesService, ScheduleDetilesService>();
+            builder.Services.AddScoped<IScheduleDetailsService, ScheduleDetailsService>();
             builder.Services.AddScoped<IScheduleService, ScheduleService>();
             builder.Services.AddScoped<IWorkerSkillsService, WorkerSkillsService>();
 
@@ -53,16 +53,14 @@ namespace Queue.API
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
 
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //Add Db
 
+            //Add Db
             builder.Services.AddDbContext<EFContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
             }, ServiceLifetime.Scoped);
 
             var app = builder.Build();
-
-            
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

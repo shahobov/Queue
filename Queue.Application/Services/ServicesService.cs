@@ -25,6 +25,7 @@ namespace Queue.Application.Services
             this.repository = repository;
             this.mapper = mapper;
         }
+
         public override ServiceResponseModel Create(ServiceRequestModel request)
         {
             if (request == null) throw new ArgumentNullException(nameof(Service));
@@ -34,7 +35,6 @@ namespace Queue.Application.Services
             repository.Add(service);
             repository.SaveChanges();
             return mapper.Map<Service, CreateServiceResponseModel>(service);
-
         }
 
         public override ServiceResponseModel Update(ServiceRequestModel request, ulong id)

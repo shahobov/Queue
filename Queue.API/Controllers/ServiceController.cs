@@ -17,11 +17,13 @@ namespace Queue.API.Controllers
         {
             _service = service;
         }
+
         [HttpGet("{id}")]
         public IActionResult Get(ulong id)
         {
             return Ok(_service.Get(id));
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -32,11 +34,13 @@ namespace Queue.API.Controllers
         {
             return Ok(_service.Create(createServiceRequestModel));
         }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(ulong id)
         {
             return Ok(_service.Delete(id));
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(UpdateServiceRequestModel service, ulong id)
         {

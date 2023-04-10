@@ -8,6 +8,5 @@ namespace Queue.Application.RequestModels.ClientRequestModels
 {
     public  class UpdateClientRequestModel :ClientRequestModel
     {
-
     }
 }

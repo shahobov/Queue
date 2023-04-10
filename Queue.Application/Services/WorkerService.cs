@@ -54,6 +54,7 @@ namespace Queue.Application.Services
             return mapper.Map<Worker, UpdateWorkerResponseModel>(worker);
             
         }
+
         public override bool Delete(ulong id)
         {
             var result = repository.GetById(id);
@@ -65,6 +66,5 @@ namespace Queue.Application.Services
             }
             return false;
         }
-
     }   
 }

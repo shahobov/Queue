@@ -20,6 +20,5 @@ namespace Queue.Application.Common.Interfaces
         TResponseModel Create(TRequestModel entity);
         TResponseModel Update(TRequestModel entity, ulong id);
         bool Delete(ulong id);
-       
     }
 }

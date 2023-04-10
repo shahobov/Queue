@@ -10,6 +10,6 @@ namespace Queue.Domain.Model
     public class Schedule : EntityBase
     {
         public DateTime Date { get; set; }
-        public List<ScheduleDetiles> ScheduleDetiles { get; set;}
+        public List<ScheduleDetails> ScheduleDetiles { get; set;}
     }
 }

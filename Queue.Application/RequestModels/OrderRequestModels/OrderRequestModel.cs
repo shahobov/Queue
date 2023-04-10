@@ -9,7 +9,6 @@ namespace Queue.Application.RequestModels.OrderRequestModels
 {
     public abstract class OrderRequestModel : BaseRequestModel
     {
-
         public ulong ServiceId { get; set; }
         public ulong ClientId { get; set; }
         public ulong WorkerId { get; set; }

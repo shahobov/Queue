@@ -31,7 +31,6 @@ namespace Queue.Application.Services
             _repository.Add(entity);
             _repository.SaveChanges();
             return _mapper.Map<Schedule, CreateScheduleResponseModel>(entity);
-            
         }
 
         public override ScheduleResponseModel Get(ulong id)

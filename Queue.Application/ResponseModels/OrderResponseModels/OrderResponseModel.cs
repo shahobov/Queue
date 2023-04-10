@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.ResponseModels.OrderResponseModel
 {
-    public abstract class OrderResponsModel : BaseResponseModel
+    public abstract class OrderResponseModel : BaseResponseModel
     {
-       
     }
 }

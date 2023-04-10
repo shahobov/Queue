@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.Common.Interfaces
 {
-    public interface IScheduleDetilesService : IBaseService<ScheduleDetiles, ScheduleDetailesResponseModel,ScheduleDetilesRequestModel>
+    public interface IScheduleDetailsService : IBaseService<ScheduleDetails, ScheduleDetailesResponseModel,ScheduleDetilesRequestModel>
     {
     }
 }

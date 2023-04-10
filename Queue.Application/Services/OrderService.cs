@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Queue.Application.Services
 {
-    public class OrderService: BaseService<Order, OrderResponsModel, OrderRequestModel>,IOrderService
+    public class OrderService: BaseService<Order, OrderResponseModel, OrderRequestModel>,IOrderService
     {
         private readonly IRepository<Order> orderRepository;
         private readonly IRepository<Worker> workerRepository;
@@ -55,9 +55,9 @@ namespace Queue.Application.Services
             if (isExitsOrder == 1)
                 throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Order));
             return true;
-
         }
-        public override OrderResponsModel Create(OrderRequestModel orders)
+
+        public override OrderResponseModel Create(OrderRequestModel orders)
         {
            Validate(orders);
            var createOrderRequest = orders as CreateOrderRequestModel;
@@ -68,19 +68,19 @@ namespace Queue.Application.Services
            return mapper.Map<Order, CreateOrderResponseModel>(entity);
         }
 
-        public override OrderResponsModel Get(ulong id)
+        public override OrderResponseModel Get(ulong id)
         {
             return mapper.Map<Order, GetOrderResponseModel>(orderRepository.GetById(id));
         }
 
-        public override IEnumerable<OrderResponsModel> GetAll()
+        public override IEnumerable<OrderResponseModel> GetAll()
         {
             var clients = orderRepository.GetAll();
 
             return mapper.Map<IEnumerable<GetOrderResponseModel>>(clients);
         }
 
-        public override OrderResponsModel Update(OrderRequestModel request, ulong id)
+        public override OrderResponseModel Update(OrderRequestModel request, ulong id)
         {
             Validate(request);
             var order = orderRepository.GetById(id);

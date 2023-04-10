@@ -10,6 +10,5 @@ namespace Queue.Application.RequestModels.QueueFoeServiceRequestModels
 {
     public class CreateOrderRequestModel : OrderRequestModel
     {
-      
     }
 }
