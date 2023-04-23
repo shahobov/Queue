@@ -15,6 +15,8 @@ namespace Queue.Infrastructure.Persistencee.TableConfigurations
         public void Configure(EntityTypeBuilder<Client> builder)
         {
             builder.ToTable(nameof(Client));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
+
         }
     }
 }

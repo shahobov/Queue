@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Queue.Domain": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53146;http://localhost:53154"
+    }
+  }
+}

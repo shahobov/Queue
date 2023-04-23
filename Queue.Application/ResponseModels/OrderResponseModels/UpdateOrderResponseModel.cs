@@ -1,18 +1,18 @@
-﻿using Queue.Application.ResponseModels.OrderResponseModel;
+﻿using Queue.Application.ResponseModels.OrderDetilsResponseModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Queue.Application.ResponseModels.OrderResponseModels
+namespace Queue.Application.ResponseModels.OrderResponseModel
 {
-    public class UpdateOrderResponseModel : OrderResponseModel.OrderResponseModel
+    public class UpdateOrderResponseModel : OrderResponseModel
     {
-        public ulong ServiceId { get; set; }
         public ulong ClientId { get; set; }
         public ulong WorkerId { get; set; }
-        public DateTime QueueTimes { get; set; }
-        public int QueueStatus { get; set; }
+        public List<GetOrderDetilsResponseModel> OrderDetils { get; set; }
+        public int Days { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int TotalPrice { get; set; }
+        public int OrderStatus { get; set; }
     }
 }

@@ -9,7 +9,12 @@ namespace Queue.Domain.Model
 {
     public class Schedule : EntityBase
     {
-        public DateTime Date { get; set; }
-        public List<ScheduleDetails> ScheduleDetiles { get; set;}
+        public Worker Worker { get; set; }
+        public ulong WorkerId { get; set; }
+        public int Day { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public bool IsBusy { get; set; }
+        
     }
 }

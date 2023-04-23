@@ -14,6 +14,7 @@ namespace Queue.Infrastructure.Persistence.TableConfigurations
         public void Configure(EntityTypeBuilder<WorkerSkills> builder)
         {
             builder.ToTable(nameof(WorkerSkills));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(q => q.Id);
             builder.Property(q => q.Id).ValueGeneratedOnAdd();
 

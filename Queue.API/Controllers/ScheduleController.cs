@@ -27,22 +27,22 @@ namespace Queue.API.Controllers
             return Ok(_scheduleService.GetAll());
         }
 
-        [HttpPost]
-        public IActionResult Post(CreateScheduleResquestModel request)
-        {
-            return Ok(_scheduleService.Create(request));
-        }
+        //[HttpPost]
+        //public IActionResult Post(CreateScheduleResquestModel request)
+        //{
+        //    return Ok(_scheduleService.Create(request));
+        //}
 
-        [HttpPut("{id}")]
-        public IActionResult Put(UpdateScheduleResquestModel request, ulong id)
-        {
-            return Ok(_scheduleService.Update(request,id));
-        }
+        //[HttpPut("{id}")]
+        //public IActionResult Put(UpdateScheduleResquestModel request, ulong id)
+        //{
+        //    return Ok(_scheduleService.Update(request,id));
+        //}
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(ulong id)
-        {
-            return Ok(_scheduleService.Delete(id));
-        }
+        //[HttpDelete("{id}")]
+        //public IActionResult Delete(ulong id)
+        //{
+        //    return Ok(_scheduleService.Delete(id));
+        //}
     }
 }

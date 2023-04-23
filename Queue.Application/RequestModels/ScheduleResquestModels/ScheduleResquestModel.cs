@@ -10,6 +10,6 @@ namespace Queue.Application.RequestModels.ScheduleResquestModels
     public abstract class ScheduleResquestModel : BaseRequestModel
     {
         public DateTime Date { get; set; }
-        public List<ScheduleDetails> ScheduleDetiles { get; set; }
+        
     }
 }

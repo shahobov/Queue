@@ -25,18 +25,18 @@ namespace Queue.Application.Services
             this.mapper = mapper;
         }
 
-        public bool Validate(ClientRequestModel clientRequestModel)
-        {
-            var isExitsClient = clientRepository.GetById(clientRequestModel.Id);
-            if (isExitsClient == null)
-                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Client));
-            return true;
+        //public bool Validate(ClientRequestModel clientRequestModel)
+        //{
+        //    var isExitsClient = clientRepository.GetById(clientRequestModel.Id);
+        //    if (isExitsClient == null)
+        //        throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Client));
+        //    return true;
 
-        }
+        //}
 
         public override ClientResponseModel Create(ClientRequestModel request)
         {
-            Validate(request);
+            //Validate(request);
             var creatClientRequest = request as CreateClientRequestModel;
             var entity = mapper.Map<CreateClientRequestModel, Client>(creatClientRequest);
             clientRepository.Add(entity);
@@ -58,7 +58,7 @@ namespace Queue.Application.Services
 
         public override ClientResponseModel Update(ClientRequestModel request, ulong id)
         {
-            Validate(request);
+          //  Validate(request);
 
             var client = clientRepository.GetById(id);
             var updateClientRequest = request as UpdateClientRequestModel;

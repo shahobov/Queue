@@ -1,4 +1,5 @@
-﻿using Queue.Domain.Model;
+﻿using Queue.Application.ResponseModels.OrderDetilsResponseModels;
+using Queue.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace Queue.Application.RequestModels.OrderRequestModels
 {
     public abstract class OrderRequestModel : BaseRequestModel
     {
-        public ulong ServiceId { get; set; }
         public ulong ClientId { get; set; }
         public ulong WorkerId { get; set; }
-        public double TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; }
-        public DateTime StartServiceTimes { get; set; } 
-        public DateTime EndExequteTimeService { get; set; }
-        public int QueueStatus { get; set; }
+        public List<GetOrderDetilsResponseModel> OrderDetils { get; set; }
+        public int Days { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int TotalPrice { get; set; }
+        public int OrderStatus { get; set; }
     }
 }

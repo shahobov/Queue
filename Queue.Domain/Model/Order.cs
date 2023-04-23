@@ -9,16 +9,16 @@ namespace Queue.Domain.Model
 {
     public class Order : EntityBase
     {
-        public Service Service { get; set; }
-        public ulong ServiceId { get; set; }
+        public virtual Client Client { get; set; }
         public ulong ClientId { get; set; } 
-        public Client Client { get; set; }
+        public virtual Worker Worker { get; set; }
         public ulong WorkerId { get; set; }
-        public Worker Worker { get; set; }
-        public double TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; }
-        public DateTime StartServiceTimes { get; set; } 
-        public DateTime EndExequteTimeService { get; set; } 
-        public int QueueStatus { get; set; }
+        public List<OrderDetils> OrderDetils { get; set; }
+        public int Days { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int TotalPrice { get; set; }
+        public int OrderStatus { get; set; }
+
     }
 }

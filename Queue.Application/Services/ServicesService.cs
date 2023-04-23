@@ -17,13 +17,15 @@ namespace Queue.Application.Services
 {
     public class ServicesService : BaseService<Service,ServiceResponseModel,ServiceRequestModel>, IServicesService
     {
-        private IRepository<Service> repository;
+        private IRepository<Service> _serviceRepository;
+        private IRepository<Category> categoryRepository;
         private IMapper mapper;
 
-        public ServicesService(IRepository<Service> repository, IMapper mapper)
+        public ServicesService(IRepository<Service> repository, IMapper mapper, IRepository<Category> categoryRepository)
         {
-            this.repository = repository;
+            this._serviceRepository = repository;
             this.mapper = mapper;
+            this.categoryRepository = categoryRepository;   
         }
 
         public override ServiceResponseModel Create(ServiceRequestModel request)
@@ -32,39 +34,39 @@ namespace Queue.Application.Services
 
             var createResquestModel = request as CreateServiceRequestModel;
             var service = mapper.Map<CreateServiceRequestModel, Service>(createResquestModel);
-            repository.Add(service);
-            repository.SaveChanges();
+            _serviceRepository.Add(service);
+            _serviceRepository.SaveChanges();
             return mapper.Map<Service, CreateServiceResponseModel>(service);
         }
 
         public override ServiceResponseModel Update(ServiceRequestModel request, ulong id)
         {
-            var service = repository.GetById(id);
+            var service = _serviceRepository.GetById(id);
             if (service == null) throw new ArgumentNullException(nameof(Service));
             var updateServiceRequest = request as UpdateServiceRequestModel;
             mapper.Map<UpdateServiceRequestModel, Service>(updateServiceRequest);
-            repository.Update(service, id);
-            repository.SaveChanges();
+            _serviceRepository.Update(service, id);
+            _serviceRepository.SaveChanges();
             return mapper.Map<Service, UpdateServiceResponseModel>(service);
         }
 
         public override GetServiceResponseModel Get(ulong id)
         {
-            return mapper.Map<Service, GetServiceResponseModel>(repository.GetById(id));
+            return mapper.Map<Service, GetServiceResponseModel>(_serviceRepository.GetById(id));
         }
 
         public override IEnumerable<ServiceResponseModel> GetAll()
         {
-            return mapper.Map<IEnumerable<GetServiceResponseModel>>(repository.GetAll());
+            return mapper.Map<IEnumerable<GetServiceResponseModel>>(_serviceRepository.GetAll());
         }
 
         public override bool Delete(ulong id)
         {
-            var result = repository.GetById(id);
+            var result = _serviceRepository.GetById(id);
             if (result != null)
             {
-                repository.Delete(result);
-                repository.SaveChanges();
+                _serviceRepository.Delete(result);
+                _serviceRepository.SaveChanges();
                 return true;
             }
             return false;

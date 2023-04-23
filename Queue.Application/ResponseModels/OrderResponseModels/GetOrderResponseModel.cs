@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Queue.Application.ResponseModels.OrderDetilsResponseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,13 @@ namespace Queue.Application.ResponseModels.OrderResponseModel
 {
     public class GetOrderResponseModel : OrderResponseModel
     {
-        public ulong ServiceId { get; set; }
         public ulong ClientId { get; set; }
         public ulong WorkerId { get; set; }
-        public DateTime QueueTimes { get; set; }
-        public int QueueStatus { get; set; }
+        public List<GetOrderDetilsResponseModel> OrderDetils { get; set; }
+        public int Days { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int TotalPrice { get; set; }
+        public int OrderStatus { get; set; }
     }
 }

@@ -15,8 +15,14 @@ namespace Queue.Infrastructure.Persistence.TableConfigurations
         public void Configure(EntityTypeBuilder<Schedule> builder)
         {
             builder.ToTable(nameof(Schedule));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(t => t.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd();
+
+            builder.HasOne(v => v.Worker)
+                .WithMany()
+                .HasForeignKey(c => c.WorkerId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

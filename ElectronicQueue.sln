@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queue.Domain", "Queue.Domain", "{59BAB497-9292-416E-8BBD-ADF925B8FCF3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queue.Infrastructure", "Queue.Infrastructure", "{E7D485C7-DA03-470C-A75C-33799E7B4488}"
+	ProjectSection(SolutionItems) = preProject
+		Tasc.txt = Tasc.txt
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.API", "Queue.API\Queue.API.csproj", "{A8EAB1B9-D291-40D6-9BC6-DBE13277F27F}"
 EndProject
@@ -26,6 +29,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.Infrastructure.Tests", "Queue.Infrastructure.Tests\Queue.Infrastructure.Tests.csproj", "{C8DEB83E-F915-48D3-A5EE-96A368E8AEA2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.API.Tests", "Queue.API.Tests\Queue.API.Tests.csproj", "{C3D52633-39DC-4C08-B99F-62E6516072B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{77392A16-6172-48D4-8AA8-7261B35F7771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

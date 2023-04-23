@@ -14,23 +14,14 @@ namespace Queue.Infrastructure.Persistence.TableConfigurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.ToTable(nameof(Order));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(q => q.Id);
             builder.Property(q => q.Id).ValueGeneratedOnAdd();
 
-            builder.HasOne(v => v.Service)
-                .WithMany()
-                .HasForeignKey(c => c.ServiceId)
+            builder.HasMany(v => v.OrderDetils)
+                .WithOne(o => o.Order)
+                .HasForeignKey(c => c.OrderId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(v => v.Client)
-                .WithMany()
-                .HasForeignKey(c => c.ClientId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(v => v.Worker)
-               .WithMany()
-               .HasForeignKey(c => c.WorkerId)
-               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

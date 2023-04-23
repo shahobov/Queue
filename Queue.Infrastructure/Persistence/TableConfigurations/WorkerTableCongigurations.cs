@@ -14,6 +14,12 @@ namespace Queue.Infrastructure.Persistence.TableConfigurations
         public void Configure(EntityTypeBuilder<Worker> builder)
         {
             builder.ToTable(nameof(Worker));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
+
+            builder.HasOne(v => v.Job)
+                .WithMany()
+                .HasForeignKey(c => c.JobId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
