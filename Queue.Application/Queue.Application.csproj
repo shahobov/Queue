@@ -16,10 +16,10 @@
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Queue.Application.Tests\Queue.Application.Tests.csproj" />
     <ProjectReference Include="..\Queue.Domain\Queue.Domain.csproj" />
   </ItemGroup>
 

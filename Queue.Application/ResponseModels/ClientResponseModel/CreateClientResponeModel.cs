@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Queue.Application.ResponseModels.ClientResponseModel
 {
-    public class CreateClientResponeModel : ClientResponseModel
+    public class CreateWorkerResponeModel : ClientResponseModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

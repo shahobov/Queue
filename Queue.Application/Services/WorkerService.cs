@@ -48,7 +48,7 @@ namespace Queue.Application.Services
             var worker = repository.GetById(id);
             if (worker == null) throw new ArgumentNullException(nameof(Worker));
             var updateRequestModel = request as UpdateWorkerRequestModel;
-            mapper.Map<UpdateWorkerRequestModel, Worker>(updateRequestModel);
+            mapper.Map<UpdateWorkerRequestModel, Worker>(updateRequestModel,worker);
             repository.Update(worker, id);
             repository.SaveChanges();
             return mapper.Map<Worker, UpdateWorkerResponseModel>(worker);

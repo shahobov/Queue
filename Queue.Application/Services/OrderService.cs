@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Queue.Application.Common.Interfaces;
 using Queue.Application.Common.Interfaces.Repositories;
+using Queue.Application.Exceptions;
 using Queue.Application.RequestModels.OrderRequestModels;
 using Queue.Application.RequestModels.QueueFoeServiceRequestModels;
 using Queue.Application.ResponseModels.OrderResponseModel;
@@ -17,9 +18,17 @@ namespace Queue.Application.Services
         private readonly IRepository<Service> _serviceRepository;
         private readonly IRepository<Client> _clientRepository;
         private readonly IRepository<Schedule> _scheduleRepository;
+        private readonly IRepository<OrderDetils> _orderDetilsRepository;
         private readonly IMapper mapper;
+        private IRepository<Order> object1;
+        private IRepository<Worker> object2;
+        private IRepository<Service> object3;
+        private IRepository<Client> object4;
+        private IRepository<Schedule> object5;
+        private IRepository<OrderDetils> object6;
+        private IMapper object7;
 
-        public OrderService(IRepository<Order> _orderRepository, IMapper mapper, IRepository<Worker> workerRepository,IRepository<Schedule> scheduleRepository, IRepository<Service> serviceRepository, IRepository<Client> clientRepository)
+        public OrderService(IRepository<Order> _orderRepository, IMapper mapper,IOrderDetilsService orderDetilsService, IRepository<Worker> workerRepository, IRepository<Schedule> scheduleRepository, IRepository<Service> serviceRepository, IRepository<Client> clientRepository)
         {
             this._orderRepository = _orderRepository;
             this.mapper = mapper;
@@ -27,34 +36,46 @@ namespace Queue.Application.Services
             this._serviceRepository = serviceRepository;
             this._clientRepository = clientRepository;
             _scheduleRepository = scheduleRepository;
+            _orderDetilsRepository = (IRepository<OrderDetils>)orderDetilsService;
         }
 
-        //public bool Validate(OrderRequestModel orderRequestModel)
-        //{   
-        //    var isExitsClient = clientRepository.GetById(orderRequestModel.ClientId);
-        //    if (isExitsClient == null)
-        //        throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound,nameof(Client));
+        public OrderService(IRepository<Order> object1, IRepository<Worker> object2, IRepository<Service> object3, IRepository<Client> object4, IRepository<Schedule> object5, IRepository<OrderDetils> object6, IMapper object7)
+        {
+            this.object1 = object1;
+            this.object2 = object2;
+            this.object3 = object3;
+            this.object4 = object4;
+            this.object5 = object5;
+            this.object6 = object6;
+            this.object7 = object7;
+        }
 
-        //    var isExitstWorker = workerRepository.GetById(orderRequestModel.WorkerId);
-        //    if (isExitstWorker == null)
-        //        throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Worker));
+        public bool Validate(OrderRequestModel orderRequestModel)
+        {
+            var isExitsClient = _clientRepository.GetById(orderRequestModel.ClientId);
+            if (isExitsClient == null)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Client));
 
-        //    var isExitsService = serviceRepository.GetById(orderRequestModel.ServiceId);
-        //    if (isExitsService == null)
-        //        throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Service));
+            var isExitstWorker = _workerRepository.GetById(orderRequestModel.WorkerId);
+            if (isExitstWorker == null)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Worker));
 
-        //    var isExitsOrder = orderRepository
-        //                    .GetAll()
-        //                    .Where(o => o.WorkerId == orderRequestModel.WorkerId &&
-        //                          o.OrderDate == orderRequestModel.OrderDate &&
-        //                          (orderRequestModel.StartServiceTimes > o.StartServiceTimes &&
-        //                          orderRequestModel.StartServiceTimes < o.EndExequteTimeService) &&
-        //                          o.QueueStatus == 1)
-        //                    .Count();
-        //    if (isExitsOrder == 1)
-        //        throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Order));
-        //    return true;
-        //}
+            //var isExitsService = _orderDetilsRepository.GetById(orderRequestModel.);
+            //if (isExitsService == null)
+            //    throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Service));
+
+            var isExitsOrder = _orderRepository
+                            .GetAll()
+                            .Where(o => o.WorkerId == orderRequestModel.WorkerId &&
+                                  o.Days == orderRequestModel.Days &&
+                                  (orderRequestModel.StartTime > o.StartTime &&
+                                  orderRequestModel.EndTime < o.EndTime) &&
+                                  o.OrderStatus == 1)
+                            .Count();
+            if (isExitsOrder == 1)
+                throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound, nameof(Order));
+            return true;
+        }
 
         public override OrderResponseModel Create(OrderRequestModel orders)
         {

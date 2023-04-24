@@ -28,7 +28,7 @@ namespace Queue.Application.Mappers
              
             CreateMap<CreateClientRequestModel, Client>();
             CreateMap<UpdateClientRequestModel, Client>();
-            CreateMap<Client, CreateClientResponeModel>();
+            CreateMap<Client, CreateWorkerResponeModel>();
             CreateMap<Client, UpdateClientResponseModel>();
             CreateMap<Client, GetClientResponseModel>();
 

@@ -41,7 +41,7 @@ namespace Queue.Application.Services
             var entity = mapper.Map<CreateClientRequestModel, Client>(creatClientRequest);
             clientRepository.Add(entity);
             clientRepository.SaveChanges();
-            return mapper.Map<Client, CreateClientResponeModel>(entity);
+            return mapper.Map<Client, CreateWorkerResponeModel>(entity);
         }
 
         public override GetClientResponseModel Get(ulong id)
@@ -62,7 +62,7 @@ namespace Queue.Application.Services
 
             var client = clientRepository.GetById(id);
             var updateClientRequest = request as UpdateClientRequestModel;
-            mapper.Map<UpdateClientRequestModel, Client>(updateClientRequest);
+            mapper.Map<UpdateClientRequestModel, Client>(updateClientRequest,client);
             clientRepository.Update(client,id);
             clientRepository.SaveChanges();
             return mapper.Map<Client, UpdateClientResponseModel>(client);

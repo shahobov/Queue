@@ -46,10 +46,10 @@ namespace Queue.Application.Services
             var job = _repository.GetById(id);
             if(job == null) throw new ArgumentNullException(nameof(Job));
             var updateJobRequest = request as UpdateJobRequestModel;
-            _mapper.Map<UpdateJobRequestModel,Job>(updateJobRequest);
+            _mapper.Map<UpdateJobRequestModel,Job>(updateJobRequest,job);
             _repository.Update(job,id);
             _repository.SaveChanges();
-            return _mapper.Map<Job,JobResponseModel>(job);
+            return _mapper.Map<Job,UpdateJobResponseModel>(job);
         }
 
         public override bool Delete(ulong id)
