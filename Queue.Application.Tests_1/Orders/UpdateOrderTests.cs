@@ -30,6 +30,11 @@ namespace Queue.Application.Tests.Orders
         {
             _mapper= new Mock<IMapper>();
             _orderRepository= new Mock<IRepository<Order>>();
+            _workerRepository = new Mock<IRepository<Worker>>();
+            _serviceRepository = new Mock<IRepository<Service>>();
+            _clientRepository = new Mock<IRepository<Client>>();
+            _scheduleRepository = new Mock<IRepository<Schedule>>();
+            _orderDetilsRepository = new Mock<IRepository<OrderDetils>>();
         }
         [Test]
         public void Should_Update_Order()
@@ -43,11 +48,8 @@ namespace Queue.Application.Tests.Orders
             _mapper.Setup(m => m.Map<Order, UpdateOrderResponseModel>(order)).Returns(orderResponseModel);
             _orderRepository.Setup(s => s.GetById(id)).Returns(order);
 
-            var orderService = new OrderService(_orderRepository.Object, 
-                _workerRepository.Object, _serviceRepository.Object, 
-                _clientRepository.Object, _scheduleRepository.Object, 
-                _orderDetilsRepository.Object, _mapper.Object);
-
+            var orderService = new OrderService(_orderRepository.Object, _mapper.Object, _orderDetilsRepository.Object,
+                                                  _workerRepository.Object, _scheduleRepository.Object, _serviceRepository.Object, _clientRepository.Object);
             var result = orderService.Update(orderRequestModel, id);
 
             var s = result as UpdateOrderResponseModel;

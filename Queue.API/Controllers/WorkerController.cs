@@ -27,22 +27,22 @@ namespace Queue.API.Controllers
             return Ok(_workerService.GetAll());
         }
 
-        //[HttpPost]
-        //public IActionResult Post(CreateWorkerRequestModel worker)
-        //{
-        //    return Ok(_workerService.Create(worker));
-        //}
+        [HttpPost]
+        public IActionResult Post(CreateWorkerRequestModel worker)
+        {
+            return Ok(_workerService.Create(worker));
+        }
 
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(ulong Id)
-        //{
-        //    return Ok(_workerService.Delete(Id));
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(ulong Id)
+        {
+            return Ok(_workerService.Delete(Id));
+        }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Put(UpdateWorkerRequestModel worker, ulong Id)
-        //{
-        //    return Ok(_workerService.Update(worker,Id));
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Put(UpdateWorkerRequestModel worker, ulong Id)
+        {
+            return Ok(_workerService.Update(worker, Id));
+        }
     }
 }

@@ -44,9 +44,9 @@ namespace Queue.Application.Tests.Workers
 
             var result = workerService.Create(workerRequestModel);
 
-            var s = result as CreateWorkerRequestModel;
+            var entity = result as CreateWorkerResponseModel;
 
-            Assert.IsNotNull(s.FirstName);
+            Assert.IsNotNull(entity.FirstName);
         }
 
         [Test]

@@ -9,7 +9,11 @@ namespace Queue.Application.ResponseModels.ScheduleResponseModels
 {
     public class CreateScheduleResponseModel : ScheduleResponseModel
     {
-        public DateTime Date { get; set; }
-      
+        public ulong WorkerId { get; set; }
+        public int Day { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public bool IsBusy { get; set; }
+
     }
 }

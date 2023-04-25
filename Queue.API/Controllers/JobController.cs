@@ -27,22 +27,22 @@ namespace Queue.API.Controllers
             return Ok(_jobService.GetAll());        
         }
 
-        //[HttpPost]
-        //public IActionResult Post(CreateJobRequestModel job)
-        //{
-        //    return Ok(_jobService.Create(job));
-        //}
+        [HttpPost]
+        public IActionResult Post(CreateJobRequestModel job)
+        {
+            return Ok(_jobService.Create(job));
+        }
 
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(ulong id)
-        //{
-        //    return Ok(_jobService.Delete(id));
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(ulong id)
+        {
+            return Ok(_jobService.Delete(id));
+        }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Put(UpdateJobRequestModel job, ulong id)
-        //{
-        //    return Ok(_jobService.Update(job, id));
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Put(UpdateJobRequestModel job, ulong id)
+        {
+            return Ok(_jobService.Update(job, id));
+        }
     }
 }

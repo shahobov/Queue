@@ -29,22 +29,22 @@ namespace Queue.API.Controllers
         {
             return Ok(_service.GetAll());
         }
-        //[HttpPost]
-        //public IActionResult Post(CreateServiceRequestModel createServiceRequestModel)
-        //{
-        //    return Ok(_service.Create(createServiceRequestModel));
-        //}
+        [HttpPost]
+        public IActionResult Post(CreateServiceRequestModel createServiceRequestModel)
+        {
+            return Ok(_service.Create(createServiceRequestModel));
+        }
 
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(ulong id)
-        //{
-        //    return Ok(_service.Delete(id));
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(ulong id)
+        {
+            return Ok(_service.Delete(id));
+        }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Put(UpdateServiceRequestModel service, ulong id)
-        //{
-        //    return Ok(_service.Update(service, id));
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Put(UpdateServiceRequestModel service, ulong id)
+        {
+            return Ok(_service.Update(service, id));
+        }
     }
 }

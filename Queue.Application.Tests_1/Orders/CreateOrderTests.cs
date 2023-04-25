@@ -34,27 +34,35 @@ namespace Queue.Application.Tests.Orders
             _mapper = new Mock<IMapper>();
             _orderRepository = new Mock<IRepository<Order>>();
             _validations = new OrderValidation();
+            _workerRepository = new Mock<IRepository<Worker>>();
+            _serviceRepository = new Mock<IRepository<Service>>();
+            _clientRepository = new Mock<IRepository<Client>>();
+            _scheduleRepository = new Mock<IRepository<Schedule>>();
+            _orderDetilsRepository = new Mock<IRepository<OrderDetils>>();
         }
         [Test]
         public void Create_Order_Test()
         {
-            var orderRequestModel = new CreateOrderRequestModel { ClientId = 1 };
+            var service = new Service { ExecutionTime=20 };
+            var orderDetils = new OrderDetils { Service=service};
+            var orderDetiles = new List<OrderDetils>();
+            orderDetiles.Add(orderDetils);
+            var orderRequestModel = new CreateOrderRequestModel { ClientId = 1, StartTime=DateTime.Parse("2023-04-24T15:57:22.936Z") };
             var orderResponseModel = new CreateOrderResponseModel { ClientId = 1 };
-            var order = new Order { ClientId = 1 };
+            var order = new Order { ClientId = 1,OrderDetils=orderDetiles };
 
             _mapper.Setup(m => m.Map<CreateOrderRequestModel, Order>(orderRequestModel)).Returns(order);
             _mapper.Setup(m => m.Map<Order, CreateOrderResponseModel>(order)).Returns(orderResponseModel);
+            
+            var orderService = new OrderService(_orderRepository.Object, _mapper.Object, _orderDetilsRepository.Object,
+            _workerRepository.Object, _scheduleRepository.Object, _serviceRepository.Object, _clientRepository.Object);
 
-            var orderService = new OrderService(_orderRepository.Object,
-                _workerRepository.Object, _serviceRepository.Object,
-                _clientRepository.Object, _scheduleRepository.Object,
-                _orderDetilsRepository.Object, _mapper.Object);
 
             var result = orderService.Create(orderRequestModel);
 
-            var s = result as CreateOrderResponseModel;
+            var entity = result as CreateOrderResponseModel;
 
-            Assert.IsNotNull(s.ClientId);
+            Assert.IsNotNull(entity.ClientId);
         }
 
         [Test]

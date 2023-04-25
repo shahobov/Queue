@@ -9,7 +9,12 @@ namespace Queue.Application.RequestModels.ScheduleResquestModels
 {
     public abstract class ScheduleResquestModel : BaseRequestModel
     {
-        public DateTime Date { get; set; }
         
+        public ulong WorkerId { get; set; }
+        public int Day { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public bool IsBusy { get; set; }
+
     }
 }
